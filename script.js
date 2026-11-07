@@ -163,6 +163,8 @@ const $ = (id) => document.getElementById(id);
 
 const screens = {
   intro: $("introScreen"),
+  journey: $("journeyScreen"),
+  legacy: $("legacyScreen"),
   signature: $("signatureScreen"),
   palm: $("palmScreen"),
   countdown: $("countdownScreen"),
@@ -226,26 +228,465 @@ function applyConfiguration() {
   document.title = `Sentuhan Aspirasi Digital | ${CONFIG.year}`;
 }
 
-// TUKAR SKRIN
-function showScreen(name) {
-  if (!screens[name]) return;
+/* =========================================
+   SCENE MANAGER — SENTUHAN ASPIRASI DIGITAL
+   Pusat kawalan semua skrin persembahan
+========================================= */
 
-  Object.entries(screens).forEach(([key, element]) => {
-    element.classList.toggle("active", key === name);
-  });
+// SUSUNAN SKRIN YANG SUDAH WUJUD
+const SCENE_ORDER = Object.freeze([
+  "intro",
+  "journey",
+  "legacy",
+  "signature",
+  "palm",
+  "countdown",
+  "final"
+]);
 
-  currentScreen = name;
-  updateStatus();
-}
+// PENDAFTARAN SKRIN
+const SCENE_REGISTRY = Object.freeze({
+    intro: {
+    label: "THE AWAKENING",
+    status: "Sedia"
+  },
 
-function updateStatus() {
-  const labels = {
-    intro: "Sedia",
-    countdown: "Countdown berjalan",
-    final: "Perasmian selesai"
+  journey: {
+    label: "THE JOURNEY",
+    status: "Perjalanan graduasi"
+  },
+
+  legacy: {
+  label: "THE LEGACY",
+  status: "Identiti dan warisan sekolah"
+},
+
+  signature: {
+    label: "THE SIGNATURE",
+    status: "Menunggu tandatangan"
+  },
+
+  palm: {
+    label: "THE OFFICIAL TOUCH",
+    status: "Menunggu sentuhan"
+  },
+
+  countdown: {
+    label: "THE GRAND COUNTDOWN",
+    status: "Countdown berjalan"
+  },
+
+  final: {
+    label: "THE GRAND DECLARATION",
+    status: "Perasmian selesai"
+  }
+});
+
+/* =========================================
+   OFFICIAL STORYBOARD REGISTRY
+   SENTUHAN ASPIRASI DIGITAL 2.0
+========================================= */
+
+// SUSUNAN SEMBILAN BABAK RASMI
+const STORYBOARD_ORDER = Object.freeze([
+  "awakening",
+  "journey",
+  "legacy",
+  "signature",
+  "awakening_power",
+  "official_touch",
+  "grand_countdown",
+  "grand_declaration",
+  "legacy_continues"
+]);
+
+// PENDAFTARAN SEMBILAN BABAK
+const STORYBOARD_REGISTRY = Object.freeze({
+
+  // BABAK 1
+  awakening: {
+    number: 1,
+    title: "THE AWAKENING",
+    duration: 25,
+    screen: "intro",
+    status: "available",
+    transition: "gold-fade",
+    description: "Pembukaan identiti majlis graduasi."
+  },
+
+  // BABAK 2
+    journey: {
+    number: 2,
+    title: "THE JOURNEY",
+    duration: 35,
+    screen: "journey",
+    status: "available",
+    transition: "cinematic-montage",
+    description: "Montaj perjalanan dan kenangan sekolah."
+  },
+
+  // BABAK 3
+  legacy: {
+    number: 3,
+    title: "THE LEGACY",
+    duration: 25,
+    screen: null,
+    status: "planned",
+    transition: "particle-formation",
+    description: "Pembentukan logo dan identiti sekolah."
+  },
+
+  // BABAK 4
+  signature: {
+    number: 4,
+    title: "THE SIGNATURE",
+    duration: 45,
+    screen: "signature",
+    status: "available",
+    transition: "gold-fade",
+    description: "Tandatangan digital sebenar perasmi."
+  },
+
+  // BABAK 5
+  awakening_power: {
+    number: 5,
+    title: "THE AWAKENING OF POWER",
+    duration: 25,
+    screen: "palm",
+    status: "partial",
+    transition: "energy-activation",
+    description: "Pengaktifan tenaga hologram."
+  },
+
+  // BABAK 6
+  official_touch: {
+    number: 6,
+    title: "THE OFFICIAL TOUCH",
+    duration: 20,
+    screen: "palm",
+    status: "partial",
+    transition: "light-sweep",
+    description: "Interaksi sentuhan rasmi perasmi."
+  },
+
+  // BABAK 7
+  grand_countdown: {
+    number: 7,
+    title: "THE GRAND COUNTDOWN",
+    duration: 20,
+    screen: "countdown",
+    status: "available",
+    transition: "energy-pulse",
+    description: "Countdown rasmi sepuluh saat."
+  },
+
+  // BABAK 8
+  grand_declaration: {
+    number: 8,
+    title: "THE GRAND DECLARATION",
+    duration: 25,
+    screen: "final",
+    status: "partial",
+    transition: "grand-flash",
+    description: "Pengisytiharan perasmian majlis."
+  },
+
+  // BABAK 9
+  legacy_continues: {
+    number: 9,
+    title: "THE LEGACY CONTINUES",
+    duration: 65,
+    screen: "final",
+    status: "partial",
+    transition: "golden-finale",
+    description: "Paparan finale dan slogan rasmi."
+  }
+
+});
+
+/* =========================================
+   CINEMATIC SCENE TRANSITION
+========================================= */
+
+function playSceneTransition(sceneId) {
+
+  let overlay = document.getElementById(
+    "sceneTransitionOverlay"
+  );
+
+  // Cipta lapisan transition jika belum tersedia.
+  if (!overlay) {
+
+    overlay = document.createElement("div");
+
+    overlay.id = "sceneTransitionOverlay";
+    overlay.className = "scene-transition-overlay";
+
+    overlay.setAttribute("aria-hidden", "true");
+
+    document.body.appendChild(overlay);
+  }
+
+  // Tentukan kesan mengikut skrin sasaran.
+  const transitionEffects = {
+    intro: "gold-fade",
+    signature: "gold-fade",
+    palm: "light-sweep",
+    countdown: "energy-pulse",
+    final: "grand-flash"
   };
 
-  statusText.textContent = labels[currentScreen] || "Sedia";
+  overlay.dataset.effect =
+    transitionEffects[sceneId] || "gold-fade";
+
+  // Hentikan animasi sebelumnya jika masih berjalan.
+  window.clearTimeout(overlay.transitionTimer);
+
+  overlay.classList.remove("is-active");
+
+  // Mulakan semula animasi CSS.
+  void overlay.offsetWidth;
+
+  overlay.classList.add("is-active");
+
+  // Bersihkan lapisan selepas animasi tamat.
+  overlay.transitionTimer = window.setTimeout(() => {
+
+    overlay.classList.remove("is-active");
+
+  }, 900);
+
+}
+
+// ENJIN SCENE MANAGER
+const sceneManager = {
+
+  activeScene: "intro",
+  navigationLocked: false,
+
+  // PERTUKARAN SKRIN
+  goTo(sceneId) {
+
+    if (
+      !SCENE_REGISTRY[sceneId] ||
+      !screens[sceneId]
+    ) {
+      console.warn("Scene tidak dijumpai:", sceneId);
+      return false;
+    }
+
+    if (this.activeScene === sceneId) {
+  updateStatus();
+  updateSceneNavigationControls();
+  return true;
+}
+
+// Mainkan kesan peralihan sinematik.
+playSceneTransition(sceneId);    
+
+Object.entries(screens).forEach(([key, element]) => {
+      element.classList.toggle("active", key === sceneId);
+    });
+
+    this.activeScene = sceneId;
+    currentScreen = sceneId;
+
+    
+// KAWALAN AUTOMATIK THE JOURNEY EXPERIENCE
+if (sceneId === "journey") {
+
+  // Mulakan montaj gambar dan naratif.
+  startJourneyMontage();
+
+  // Mulakan animasi shooting stars.
+  startJourneyMeteors();
+
+  // Mulakan muzik latar dan voice-over.
+  startJourneyAudio();
+
+} else {
+
+  // Hentikan montaj apabila keluar.
+  stopJourneyMontage();
+
+  // Hentikan meteor dan bersihkan elemen animasi.
+  stopJourneyMeteors();
+
+  // Hentikan audio dengan kesan fade-out.
+  stopJourneyAudio();
+
+}
+
+
+
+    updateStatus();
+    updateSceneNavigationControls();
+
+    return true;
+  },
+
+  // KUNCI NAVIGASI SEMENTARA
+  runNavigation(action) {
+
+    if (this.navigationLocked) {
+      showNotice("Sila tunggu peralihan skrin selesai.");
+      return false;
+    }
+
+    this.navigationLocked = true;
+
+    action();
+
+    setTimeout(() => {
+      this.navigationLocked = false;
+      updateSceneNavigationControls();
+    }, 900);
+
+    return true;
+  },
+
+  
+  // KE BABAK SETERUSNYA
+  next() {
+
+    if (this.navigationLocked) {
+      showNotice("Sila tunggu sebentar.");
+      return false;
+    }
+
+    // THE AWAKENING → THE JOURNEY
+    if (currentScreen === "intro") {
+      return this.runNavigation(() => {
+        startButton.click();
+      });
+    }
+
+    // THE JOURNEY → THE SIGNATURE
+    if (currentScreen === "journey") {
+      return this.runNavigation(() => {
+
+        showScreen("signature");
+
+        requestAnimationFrame(() => {
+          resizeSignatureCanvas();
+        });
+
+        showNotice("Sila lengkapkan tandatangan rasmi perasmi.");
+
+      });
+    }
+
+    // THE SIGNATURE → THE PALM
+    // Kekalkan pengesahan tandatangan asal.
+    if (currentScreen === "signature") {
+      return this.runNavigation(() => {
+        finishSignature();
+      });
+    }
+
+    showNotice(
+      "Babak ini memerlukan interaksi rasmi atau kawalan khas."
+    );
+
+    return false;
+  },
+
+  // KEMBALI KE BABAK SEBELUMNYA
+  previous() {
+
+    if (this.navigationLocked) {
+      showNotice("Sila tunggu sebentar.");
+      return false;
+    }
+
+    // THE JOURNEY → THE AWAKENING
+    if (currentScreen === "journey") {
+      return this.runNavigation(() => {
+        this.goTo("intro");
+      });
+    }
+
+    // THE SIGNATURE → THE JOURNEY
+    if (currentScreen === "signature") {
+
+      if (signatureHasInk) {
+        showNotice(
+          "Padam tandatangan dahulu sebelum kembali ke THE JOURNEY."
+        );
+
+        return false;
+      }
+
+      return this.runNavigation(() => {
+        this.goTo("journey");
+      });
+    }
+
+    showNotice(
+      "Kembali ke babak sebelumnya tidak dibenarkan pada peringkat ini."
+    );
+
+    return false;
+  },
+
+  // DAPATKAN SKRIN SEMASA
+  getCurrentScene() {
+    return this.activeScene;
+  },
+
+  // DAPATKAN SUSUNAN SKRIN
+  getSceneOrder() {
+    return [...SCENE_ORDER];
+  },
+
+  // DAPATKAN SUSUNAN SEMBILAN BABAK
+getStoryboardOrder() {
+  return [...STORYBOARD_ORDER];
+},
+
+// DAPATKAN MAKLUMAT BABAK
+getStoryboardScene(sceneId) {
+
+  return STORYBOARD_REGISTRY[sceneId] || null;
+
+},
+
+};
+
+
+// FUNGSI KESERASIAN UNTUK KOD SEDIA ADA
+function showScreen(name) {
+  return sceneManager.goTo(name);
+}
+
+
+// KEMAS KINI STATUS PAPARAN
+function updateStatus() {
+
+  const scene = SCENE_REGISTRY[currentScreen];
+
+  statusText.textContent = scene
+    ? scene.status
+    : "Sedia";
+
+}
+
+// KEMAS KINI STATUS BUTANG NAVIGASI
+function updateSceneNavigationControls() {
+
+  const previousButton = $("operatorPreviousButton");
+  const nextButton = $("operatorNextButton");
+
+  if (!previousButton || !nextButton) return;
+
+  // Previous tersedia pada Journey dan Signature.
+  previousButton.disabled =
+    !["journey", "signature"].includes(currentScreen);
+
+  // Next tersedia pada Intro, Journey dan Signature.
+  nextButton.disabled =
+    !["intro", "journey", "signature"].includes(currentScreen);
+
 }
 
 // NOTIS RINGKAS
@@ -1044,15 +1485,59 @@ window.addEventListener("resize", () => {
   }, 120);
 });
 
-// KAWALAN BUTANG
-startButton.addEventListener("click", startGimmick);
+// BUTANG UTAMA — THE AWAKENING KE THE JOURNEY
+startButton.addEventListener("click", () => {
 
-$("operatorStartButton").addEventListener("click", () => {
-  toggleOperator(false);
+  showScreen("journey");
 
-  // Jika sudah di skrin akhir, operator perlu reset dahulu
-  startGimmick();
+  showNotice(
+    "Memulakan perjalanan aspirasi graduasi."
+  );
+
 });
+
+// KAWALAN START OPERATOR
+$("operatorStartButton").addEventListener("click", () => {
+
+  // Jika masih di Opening Screen,
+  // teruskan ke skrin tandatangan.
+  if (currentScreen === "intro") {
+    toggleOperator(false);
+    startButton.click();
+    return;
+  }
+
+  // Jika sudah berada di skrin tandatangan,
+  // jangan ulang proses atau melangkau tandatangan.
+  if (currentScreen === "signature") {
+    toggleOperator(false);
+    showNotice("Skrin tandatangan sudah sedia. Sila teruskan.");
+    return;
+  }
+
+  // Jika persembahan sedang berlangsung,
+  // jangan benarkan permulaan semula secara tidak sengaja.
+  showNotice(
+    "Persembahan sedang berlangsung. Gunakan kawalan yang sesuai."
+  );
+
+});
+
+// SCENE MANAGER — OPERATOR NAVIGATION
+
+$("operatorPreviousButton").addEventListener(
+  "click",
+  () => {
+    sceneManager.previous();
+  }
+);
+
+$("operatorNextButton").addEventListener(
+  "click",
+  () => {
+    sceneManager.next();
+  }
+);
 
 $("skipButton").addEventListener("click", skipCountdown);
 $("resetButton").addEventListener("click", resetGimmick);
@@ -1105,11 +1590,8 @@ function initialiseApp() {
 
   setupAudioFiles();
 
-  showScreen("signature");
-
-  requestAnimationFrame(() => {
-    resizeSignatureCanvas();
-  });
+  // Mulakan persembahan pada Opening Screen
+  showScreen("intro");
 
   updateStatus();
 }
@@ -1527,15 +2009,6 @@ function removeDigitalParticles() {
 }
 
 
-function removeDigitalParticles() {
-  const layer = document.getElementById("digitalParticleLayer");
-
-  if (layer) {
-    layer.remove();
-  }
-}
-
-
 // SIMULASI IMBASAN TAPAK TANGAN
 function beginPalmScan() {
   if (currentScreen !== "palm" || palmScanTimer !== null) return;
@@ -1680,3 +2153,457 @@ window.addEventListener("resize", () => {
     resizeSignatureCanvas();
   }
 });
+
+
+/* =====================================================
+   THE JOURNEY — AUTOMATIC CINEMATIC SLIDESHOW
+===================================================== */
+
+let journeyMontageTimer = null;
+let journeyCurrentSlide = 0;
+
+
+function startJourneyMontage() {
+
+  const montage = document.getElementById("journeyMontage");
+
+  if (!montage) return;
+
+  const slides = montage.querySelectorAll(".journey-slide");
+
+  if (!slides.length) return;
+
+  // ELEMEN NARATIF
+  const narrative = document.getElementById("journeySceneNarrative");
+  const sceneLabel = document.getElementById("journeySceneLabel");
+  const sceneTitle = document.getElementById("journeySceneTitle");
+  const sceneDescription = document.getElementById("journeySceneDescription");
+
+  // DATA NARATIF MENGIKUT GAMBAR
+  const journeyNarratives = [
+    {
+      label: "OUR BEGINNING",
+      title: "ILMU",
+      description: "Setiap perjalanan bermula dengan ilmu dan pengetahuan yang menjadi asas masa depan."
+    },
+    {
+      label: "THE SPIRIT OF GROWTH",
+      title: "USAHA",
+      description: "Setiap pengalaman mengajar kita untuk terus berusaha, mencuba dan memperbaiki diri."
+    },
+    {
+      label: "THE SPIRIT OF EXCELLENCE",
+      title: "SEMANGAT",
+      description: "Dengan semangat dan keberanian, setiap cabaran menjadi peluang untuk melangkah lebih jauh."
+    },
+    {
+      label: "MEMORIES TO TREASURE",
+      title: "KENANGAN",
+      description: "Bersama guru dan rakan, tercipta kenangan yang akan kekal dalam ingatan."
+    },
+    {
+      label: "THE FRUITS OF OUR JOURNEY",
+      title: "KEJAYAAN",
+      description: "Segala usaha dan pengorbanan akhirnya membuahkan kejayaan yang membanggakan."
+    }
+  ];
+
+  // HENTIKAN TIMER TERDAHULU
+  clearInterval(journeyMontageTimer);
+
+  // MULAKAN DARIPADA GAMBAR PERTAMA
+  journeyCurrentSlide = 0;
+
+  function updateJourneyNarrative(index) {
+
+    if (
+      !narrative ||
+      !sceneLabel ||
+      !sceneTitle ||
+      !sceneDescription
+    ) return;
+
+    const content = journeyNarratives[index];
+
+    if (!content) return;
+
+    // KEMAS KINI TEKS
+    sceneLabel.textContent = content.label;
+    sceneTitle.textContent = content.title;
+    sceneDescription.textContent = content.description;
+
+    // AKTIFKAN SEMULA ANIMASI
+    narrative.classList.remove("narrative-enter");
+
+    void narrative.offsetWidth;
+
+    narrative.classList.add("narrative-enter");
+  }
+
+  // PAPARKAN GAMBAR DAN NARATIF PERTAMA
+  slides.forEach((slide, index) => {
+    slide.classList.toggle("active", index === 0);
+  });
+
+  updateJourneyNarrative(0);
+
+  // PERTUKARAN GAMBAR DAN NARATIF
+  journeyMontageTimer = setInterval(() => {
+
+    slides[journeyCurrentSlide].classList.remove("active");
+
+    journeyCurrentSlide =
+      (journeyCurrentSlide + 1) % slides.length;
+
+    slides[journeyCurrentSlide].classList.add("active");
+
+    updateJourneyNarrative(
+      journeyCurrentSlide % journeyNarratives.length
+    );
+
+  }, 6000);
+
+}
+
+function stopJourneyMontage() {
+
+  if (journeyMontageTimer !== null) {
+    clearInterval(journeyMontageTimer);
+    journeyMontageTimer = null;
+  }
+
+}
+
+
+/* =====================================================
+   THE JOURNEY — CINEMATIC METEOR GENERATOR
+   STEP 5.6F-2B
+===================================================== */
+
+let journeyMeteorTimer = null;
+const journeyActiveMeteors = new Set();
+
+function createJourneyMeteor() {
+
+  const layer = document.getElementById("journeyMeteorLayer");
+
+  if (!layer || currentScreen !== "journey") return;
+
+  // Hadkan jumlah meteor serentak untuk prestasi projektor.
+  if (journeyActiveMeteors.size >= 3) return;
+
+  const meteor = document.createElement("span");
+  meteor.className = "journey-meteor";
+
+  // Pilih warna secara rawak.
+  const color = Math.random() > 0.5
+    ? "meteor-gold"
+    : "meteor-blue";
+
+  meteor.classList.add(color);
+
+  const width = layer.clientWidth;
+  const height = layer.clientHeight;
+
+  if (!width || !height) return;
+
+  // Panjang ekor meteor.
+  const meteorLength = 130 + Math.random() * 120;
+
+  meteor.style.width = `${meteorLength}px`;
+
+  // Meteor bergerak dari kiri atas menuju kanan bawah.
+  const startX = -meteorLength + Math.random() * width * 0.65;
+  const startY = Math.random() * height * 0.65;
+
+  const travelX = width * (0.35 + Math.random() * 0.35);
+  const travelY = height * (0.20 + Math.random() * 0.25);
+
+  // Selaraskan arah ekor dengan arah pergerakan.
+  const angle = Math.atan2(travelY, travelX) * 180 / Math.PI;
+
+  meteor.style.left = `${startX}px`;
+  meteor.style.top = `${startY}px`;
+
+  meteor.style.transform = `rotate(${angle}deg)`;
+
+  layer.appendChild(meteor);
+  journeyActiveMeteors.add(meteor);
+
+  // Tempoh pergerakan antara 1.4 hingga 2.4 saat.
+  const duration = 1400 + Math.random() * 1000;
+
+  const animation = meteor.animate(
+    [
+      {
+        transform: `rotate(${angle}deg) translateX(0px)`,
+        opacity: 0
+      },
+      {
+        transform: `rotate(${angle}deg) translateX(${Math.hypot(travelX, travelY) * 0.15}px)`,
+        opacity: 1,
+        offset: 0.15
+      },
+      {
+        transform: `rotate(${angle}deg) translateX(${Math.hypot(travelX, travelY) * 0.85}px)`,
+        opacity: 1,
+        offset: 0.85
+      },
+      {
+        transform: `rotate(${angle}deg) translateX(${Math.hypot(travelX, travelY)}px)`,
+        opacity: 0
+      }
+    ],
+    {
+      duration,
+      easing: "ease-in-out",
+      fill: "forwards"
+    }
+  );
+
+  // Buang meteor selepas animasi tamat.
+  const cleanup = () => {
+    meteor.remove();
+    journeyActiveMeteors.delete(meteor);
+  };
+
+  animation.addEventListener("finish", cleanup, { once: true });
+  animation.addEventListener("cancel", cleanup, { once: true });
+
+}
+
+function startJourneyMeteors() {
+
+  stopJourneyMeteors();
+
+  const layer = document.getElementById("journeyMeteorLayer");
+
+  if (!layer) return;
+
+  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    return;
+  }
+
+  // Meteor pertama muncul selepas memasuki THE JOURNEY.
+  createJourneyMeteor();
+
+  // Meteor seterusnya muncul setiap 1.8 saat.
+  journeyMeteorTimer = setInterval(() => {
+
+    createJourneyMeteor();
+
+  }, 1800);
+
+}
+
+function stopJourneyMeteors() {
+
+  if (journeyMeteorTimer !== null) {
+    clearInterval(journeyMeteorTimer);
+    journeyMeteorTimer = null;
+  }
+
+  // Hentikan dan buang semua meteor apabila keluar.
+  journeyActiveMeteors.forEach((meteor) => {
+    const animations = meteor.getAnimations();
+
+    animations.forEach((animation) => animation.cancel());
+
+    meteor.remove();
+  });
+
+  journeyActiveMeteors.clear();
+
+}
+
+
+/* =====================================================
+   THE JOURNEY — CINEMATIC AUDIO CONTROLLER
+   STEP 5.6G-3
+===================================================== */
+
+let journeyAudioStartTimer = null;
+let journeyAudioSession = 0;
+
+const journeyAudioFadeTimers = {
+  music: null,
+  voice: null
+};
+
+// FUNGSI FADE AUDIO
+function fadeJourneyAudio(audio, targetVolume, duration, type, onComplete) {
+
+  if (!audio) return;
+
+  if (journeyAudioFadeTimers[type]) {
+    clearInterval(journeyAudioFadeTimers[type]);
+    journeyAudioFadeTimers[type] = null;
+  }
+
+  const startVolume = audio.volume;
+  const startTime = Date.now();
+
+  journeyAudioFadeTimers[type] = setInterval(() => {
+
+    const elapsed = Date.now() - startTime;
+    const progress = Math.min(elapsed / duration, 1);
+
+    audio.volume =
+      startVolume + (targetVolume - startVolume) * progress;
+
+    if (progress >= 1) {
+
+      clearInterval(journeyAudioFadeTimers[type]);
+      journeyAudioFadeTimers[type] = null;
+
+      audio.volume = targetVolume;
+
+      if (typeof onComplete === "function") {
+        onComplete();
+      }
+
+    }
+
+  }, 40);
+
+}
+
+
+// MULAKAN AUDIO THE JOURNEY
+function startJourneyAudio() {
+
+  const music = document.getElementById("journeyMusic");
+  const voice = document.getElementById("journeyVoiceover");
+
+  if (!music || !voice) return;
+
+  // Elakkan sesi audio bertindih.
+  stopJourneyAudio();
+
+  const session = ++journeyAudioSession;
+
+  music.pause();
+  voice.pause();
+
+  music.currentTime = 0;
+  voice.currentTime = 0;
+
+  music.volume = 0;
+  voice.volume = 0;
+
+  // Mulakan muzik latar.
+  music.play()
+    .then(() => {
+
+      if (session !== journeyAudioSession) return;
+
+      fadeJourneyAudio(
+        music,
+        0.28,
+        2500,
+        "music"
+      );
+
+    })
+    .catch((error) => {
+      console.warn("Muzik THE JOURNEY tidak dapat dimainkan:", error);
+    });
+
+
+  // Voice-over bermula selepas pengenalan muzik.
+  journeyAudioStartTimer = setTimeout(() => {
+
+    if (session !== journeyAudioSession) return;
+
+    voice.play()
+      .then(() => {
+
+        if (session !== journeyAudioSession) return;
+
+        // Suara pencerita lebih dominan.
+        fadeJourneyAudio(
+          voice,
+          0.95,
+          900,
+          "voice"
+        );
+
+        // Perlahankan muzik ketika pencerita bercakap.
+        fadeJourneyAudio(
+          music,
+          0.10,
+          1000,
+          "music"
+        );
+
+      })
+      .catch((error) => {
+        console.warn("Voice-over THE JOURNEY tidak dapat dimainkan:", error);
+      });
+
+  }, 2200);
+
+
+  // Apabila voice-over tamat, muzik meningkat semula.
+  voice.onended = () => {
+
+    if (session !== journeyAudioSession) return;
+
+    fadeJourneyAudio(
+      music,
+      0.28,
+      1800,
+      "music"
+    );
+
+  };
+
+}
+
+
+// HENTIKAN AUDIO THE JOURNEY
+function stopJourneyAudio() {
+
+  const music = document.getElementById("journeyMusic");
+  const voice = document.getElementById("journeyVoiceover");
+
+  // Batalkan sesi terdahulu.
+  journeyAudioSession++;
+
+  if (journeyAudioStartTimer !== null) {
+    clearTimeout(journeyAudioStartTimer);
+    journeyAudioStartTimer = null;
+  }
+
+  if (!music || !voice) return;
+
+  // Hentikan fade terdahulu.
+  Object.keys(journeyAudioFadeTimers).forEach((type) => {
+
+    if (journeyAudioFadeTimers[type]) {
+      clearInterval(journeyAudioFadeTimers[type]);
+      journeyAudioFadeTimers[type] = null;
+    }
+
+  });
+
+  // Fade-out sebelum audio dihentikan.
+  fadeJourneyAudio(music, 0, 900, "music", () => {
+
+    music.pause();
+    music.currentTime = 0;
+
+  });
+
+  fadeJourneyAudio(voice, 0, 700, "voice", () => {
+
+    voice.pause();
+    voice.currentTime = 0;
+
+  });
+
+  // Bersihkan event voice-over.
+  voice.onended = null;
+
+}
+

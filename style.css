@@ -573,6 +573,31 @@ button:focus-visible {
   gap: 8px;
 }
 
+/* SCENE MANAGER NAVIGATION */
+
+.operator-navigation {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+
+.operator-navigation .control-button {
+  text-align: center;
+  font-size: 11px;
+}
+
+/* BUTANG YANG TIDAK BOLEH DIGUNAKAN */
+
+.control-button:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+  background: #ffffff05;
+}
+
+.control-button:disabled:hover {
+  background: #ffffff05;
+}
+
 .control-button,
 .small-button {
   border: 1px solid #ffffff26;
@@ -3098,5 +3123,1486 @@ top: calc(50% - 40px) !important;
 
   #finalScreen .photo-hint {
     margin-top: 14px !important;
+  }
+}
+
+/* ==========================================
+   SCENE MANAGER 2.0
+   CINEMATIC TRANSITION EFFECTS
+   ROYAL MIDNIGHT
+========================================== */
+
+/* LAPISAN UTAMA */
+
+.scene-transition-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 900;
+  overflow: hidden;
+  pointer-events: none;
+  visibility: hidden;
+}
+
+.scene-transition-overlay.is-active {
+  visibility: visible;
+}
+
+/* LAPISAN CAHAYA */
+
+.scene-transition-overlay::before,
+.scene-transition-overlay::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+/* ==========================================
+   1. GOLDEN FADE
+   OPENING → SIGNATURE
+========================================== */
+
+.scene-transition-overlay[data-effect="gold-fade"].is-active::before {
+  background: linear-gradient(
+    110deg,
+    transparent 25%,
+    rgba(180, 135, 55, 0.12) 42%,
+    rgba(255, 224, 155, 0.75) 50%,
+    rgba(180, 135, 55, 0.15) 58%,
+    transparent 75%
+  );
+
+  animation: sceneGoldSweep 850ms ease-in-out forwards;
+}
+
+.scene-transition-overlay[data-effect="gold-fade"].is-active::after {
+  background: radial-gradient(
+    ellipse at center,
+    rgba(229, 183, 99, 0.28),
+    transparent 65%
+  );
+
+  animation: sceneGoldGlow 850ms ease-out forwards;
+}
+
+/* ==========================================
+   2. LIGHT SWEEP
+   SIGNATURE → HOLOGRAM
+========================================== */
+
+.scene-transition-overlay[data-effect="light-sweep"].is-active::before {
+  background: linear-gradient(
+    105deg,
+    transparent 38%,
+    rgba(51, 190, 255, 0.15) 46%,
+    rgba(180, 231, 255, 0.85) 50%,
+    rgba(215, 169, 90, 0.65) 53%,
+    transparent 62%
+  );
+
+  animation: sceneLightSweep 850ms cubic-bezier(.2, .7, .3, 1) forwards;
+}
+
+.scene-transition-overlay[data-effect="light-sweep"].is-active::after {
+  background: radial-gradient(
+    ellipse at center,
+    rgba(36, 169, 255, 0.28),
+    transparent 65%
+  );
+
+  animation: sceneLightGlow 850ms ease-out forwards;
+}
+
+/* ==========================================
+   3. ENERGY PULSE
+   HOLOGRAM → COUNTDOWN
+========================================== */
+
+.scene-transition-overlay[data-effect="energy-pulse"].is-active::before {
+  background: radial-gradient(
+    circle at center,
+    rgba(255, 235, 184, 0.95) 0%,
+    rgba(225, 168, 77, 0.42) 22%,
+    rgba(36, 150, 255, 0.18) 45%,
+    transparent 72%
+  );
+
+  animation: sceneEnergyPulse 850ms ease-out forwards;
+}
+
+.scene-transition-overlay[data-effect="energy-pulse"].is-active::after {
+  background: radial-gradient(
+    circle at center,
+    rgba(255, 255, 255, 0.35),
+    transparent 60%
+  );
+
+  animation: sceneEnergyGlow 850ms ease-out forwards;
+}
+
+/* ==========================================
+   4. GRAND FLASH
+   COUNTDOWN → FINALE
+========================================== */
+
+.scene-transition-overlay[data-effect="grand-flash"].is-active::before {
+  background: radial-gradient(
+    ellipse at center,
+    rgba(255, 255, 255, 0.95) 0%,
+    rgba(255, 219, 143, 0.65) 20%,
+    rgba(211, 155, 66, 0.28) 45%,
+    transparent 75%
+  );
+
+  animation: sceneGrandFlash 850ms ease-out forwards;
+}
+
+.scene-transition-overlay[data-effect="grand-flash"].is-active::after {
+  background: linear-gradient(
+    180deg,
+    transparent,
+    rgba(255, 210, 125, 0.24),
+    transparent
+  );
+
+  animation: sceneGrandGlow 850ms ease-out forwards;
+}
+
+/* ==========================================
+   KEYFRAME ANIMATIONS
+========================================== */
+
+@keyframes sceneGoldSweep {
+  0% {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+
+  30% {
+    opacity: 1;
+  }
+
+  100% {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+}
+
+@keyframes sceneGoldGlow {
+  0%, 100% {
+    opacity: 0;
+  }
+
+  40% {
+    opacity: 1;
+  }
+}
+
+@keyframes sceneLightSweep {
+  0% {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+
+  35% {
+    opacity: 1;
+  }
+
+  100% {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+}
+
+@keyframes sceneLightGlow {
+  0%, 100% {
+    opacity: 0;
+  }
+
+  45% {
+    opacity: 1;
+  }
+}
+
+@keyframes sceneEnergyPulse {
+  0% {
+    transform: scale(0.2);
+    opacity: 0;
+  }
+
+  35% {
+    opacity: 1;
+  }
+
+  100% {
+    transform: scale(1.8);
+    opacity: 0;
+  }
+}
+
+@keyframes sceneEnergyGlow {
+  0%, 100% {
+    opacity: 0;
+  }
+
+  40% {
+    opacity: 1;
+  }
+}
+
+@keyframes sceneGrandFlash {
+  0% {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+
+  30% {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  100% {
+    opacity: 0;
+    transform: scale(1.35);
+  }
+}
+
+@keyframes sceneGrandGlow {
+  0%, 100% {
+    opacity: 0;
+  }
+
+  30% {
+    opacity: 1;
+  }
+}
+
+
+/* =====================================================
+   BABAK 2 — THE JOURNEY
+   ROYAL MIDNIGHT CINEMATIC DESIGN
+===================================================== */
+
+#journeyScreen.journey-screen {
+  position: absolute;
+  overflow: hidden;
+  isolation: isolate;
+
+  background:
+    radial-gradient(
+      ellipse at 50% 42%,
+      rgba(25, 59, 94, 0.48) 0%,
+      transparent 58%
+    ),
+    linear-gradient(
+      135deg,
+      #071629 0%,
+      #030914 55%,
+      #08172b 100%
+    );
+}
+
+/* CAHAYA EMAS DI LATAR */
+
+#journeyScreen .journey-background-glow {
+  position: absolute;
+  width: 55vw;
+  height: 55vw;
+  max-width: 750px;
+  max-height: 750px;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    rgba(211, 166, 86, 0.10) 0%,
+    rgba(49, 113, 171, 0.06) 38%,
+    transparent 70%
+  );
+  filter: blur(35px);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* LABEL BAHAGIAN ATAS */
+
+#journeyScreen .journey-top-label {
+  position: absolute;
+  top: 6%;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  white-space: nowrap;
+  color: #b9c7d8;
+  font-size: clamp(9px, 0.9vw, 12px);
+  letter-spacing: 0.32em;
+  z-index: 3;
+}
+
+#journeyScreen .journey-top-label .status-dot {
+  flex-shrink: 0;
+  background: #e3bd73;
+  box-shadow: 0 0 12px #e3bd73;
+}
+
+/* KANDUNGAN UTAMA */
+
+#journeyScreen .journey-content {
+  position: relative;
+  width: min(100%, 1050px);
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 35px 20px;
+}
+
+#journeyScreen .journey-content .eyebrow {
+  margin: 0 0 12px;
+  color: #d6b879;
+  font-size: clamp(9px, 1vw, 13px);
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+}
+
+#journeyScreen .journey-title {
+  margin: 0;
+  color: #f4f1e9;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(38px, 6.2vw, 76px);
+  font-weight: 400;
+  letter-spacing: 0.13em;
+  line-height: 1.15;
+  text-shadow: 0 5px 35px rgba(0, 0, 0, 0.45);
+}
+
+#journeyScreen .journey-title span {
+  color: #e1bf7a;
+}
+
+/* GARIS EMAS */
+
+#journeyScreen .journey-gold-line {
+  width: clamp(70px, 9vw, 120px);
+  height: 1px;
+  margin: 22px 0;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    #e3bd73,
+    transparent
+  );
+  box-shadow: 0 0 12px rgba(227, 189, 115, 0.45);
+}
+
+/* PENERANGAN */
+
+#journeyScreen .journey-description {
+  max-width: 650px;
+  margin: 0;
+  color: #c0ccda;
+  font-size: clamp(12px, 1.25vw, 16px);
+  line-height: 1.9;
+  letter-spacing: 0.035em;
+  text-align: center;
+}
+
+/* TIGA PERINGKAT PERJALANAN */
+
+#journeyScreen .journey-milestones {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(12px, 3vw, 38px);
+  margin-top: clamp(32px, 5vh, 55px);
+}
+
+#journeyScreen .journey-milestone {
+  position: relative;
+  min-height: 145px;
+  padding: 22px 12px;
+  border: 1px solid rgba(218, 185, 120, 0.19);
+  background: linear-gradient(
+    145deg,
+    rgba(255, 255, 255, 0.045),
+    rgba(255, 255, 255, 0.008)
+  );
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  transition:
+    border-color 350ms ease,
+    background 350ms ease,
+    transform 350ms ease;
+}
+
+#journeyScreen .journey-milestone:hover {
+  border-color: rgba(227, 189, 115, 0.55);
+  background: rgba(227, 189, 115, 0.055);
+  transform: translateY(-4px);
+}
+
+#journeyScreen .journey-number {
+  position: absolute;
+  top: 10px;
+  left: 13px;
+  color: rgba(227, 189, 115, 0.55);
+  font-size: 10px;
+  letter-spacing: 0.12em;
+}
+
+#journeyScreen .journey-symbol {
+  margin-bottom: 10px;
+  color: #e3bd73;
+  font-size: 25px;
+  text-shadow: 0 0 18px rgba(227, 189, 115, 0.35);
+}
+
+#journeyScreen .journey-milestone h3 {
+  margin: 0 0 8px;
+  color: #f1e4c7;
+  font-size: clamp(12px, 1.2vw, 16px);
+  font-weight: 500;
+  letter-spacing: 0.2em;
+}
+
+#journeyScreen .journey-milestone p {
+  margin: 0;
+  color: #aebdce;
+  font-size: clamp(10px, 0.95vw, 13px);
+  line-height: 1.6;
+}
+
+/* FOOTER */
+
+#journeyScreen .journey-footer {
+  margin: clamp(30px, 5vh, 48px) 0 0;
+  color: #8294a9;
+  font-size: clamp(8px, 0.8vw, 10px);
+  letter-spacing: 0.25em;
+}
+
+#journeyScreen .journey-footer span {
+  margin: 0 9px;
+  color: #d8b66f;
+}
+
+/* HIASAN GEOMETRI DI PENJURU */
+
+#journeyScreen .journey-corner {
+  position: absolute;
+  width: 65px;
+  height: 65px;
+  border-color: rgba(218, 185, 120, 0.45);
+  border-style: solid;
+  pointer-events: none;
+  z-index: 1;
+}
+
+#journeyScreen .journey-corner-tl {
+  top: 22px;
+  left: 22px;
+  border-width: 1px 0 0 1px;
+}
+
+#journeyScreen .journey-corner-br {
+  right: 22px;
+  bottom: 22px;
+  border-width: 0 1px 1px 0;
+}
+
+/* RESPONSIVE UNTUK SKRIN KECIL */
+
+@media (max-width: 650px) {
+  #journeyScreen .journey-milestones {
+    gap: 8px;
+  }
+
+  #journeyScreen .journey-milestone {
+    min-height: 125px;
+    padding: 18px 7px;
+  }
+
+  #journeyScreen .journey-milestone h3 {
+    letter-spacing: 0.1em;
+  }
+
+  #journeyScreen .journey-description {
+    max-width: 90%;
+  }
+
+  #journeyScreen .journey-corner {
+    width: 35px;
+    height: 35px;
+  }
+}
+
+@media (max-height: 650px) {
+  #journeyScreen .journey-content {
+    padding-top: 15px;
+    padding-bottom: 15px;
+  }
+
+  #journeyScreen .journey-gold-line {
+    margin: 12px 0;
+  }
+
+  #journeyScreen .journey-milestones {
+    margin-top: 22px;
+  }
+
+  #journeyScreen .journey-footer {
+    margin-top: 20px;
+  }
+}
+
+
+/* =====================================================
+   THE LEGACY — ROYAL MIDNIGHT IDENTITY REVEAL
+   SENTUHAN ASPIRASI DIGITAL 2.0
+===================================================== */
+
+#legacyScreen {
+  position: relative;
+  min-height: 100vh;
+  width: 100%;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  isolation: isolate;
+  background:
+    radial-gradient(
+      ellipse at 50% 43%,
+      rgba(21, 55, 94, 0.48) 0%,
+      rgba(8, 22, 42, 0.35) 42%,
+      transparent 75%
+    ),
+    linear-gradient(
+      135deg,
+      #030a14 0%,
+      #08172b 48%,
+      #030914 100%
+    );
+}
+
+/* CAHAYA LATAR BELAKANG */
+
+#legacyScreen .legacy-background-glow {
+  position: absolute;
+  width: min(75vw, 900px);
+  height: min(75vw, 900px);
+  left: 50%;
+  top: 48%;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    rgba(34, 105, 170, 0.19) 0%,
+    rgba(18, 63, 112, 0.10) 38%,
+    transparent 72%
+  );
+  filter: blur(35px);
+  pointer-events: none;
+  z-index: -1;
+}
+
+/* LABEL ATAS */
+
+#legacyScreen .legacy-top-label {
+  position: absolute;
+  top: clamp(28px, 5vh, 52px);
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #aebed0;
+  font-size: clamp(8px, 0.85vw, 11px);
+  letter-spacing: 0.3em;
+  white-space: nowrap;
+  z-index: 3;
+}
+
+#legacyScreen .legacy-top-label .status-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #d9b76f;
+  box-shadow: 0 0 12px rgba(217, 183, 111, 0.8);
+}
+
+/* KANDUNGAN UTAMA */
+
+#legacyScreen .legacy-content {
+  position: relative;
+  z-index: 2;
+  width: min(92%, 1000px);
+  padding: 75px 20px 35px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  animation: legacyContentReveal 1.3s ease both;
+}
+
+@keyframes legacyContentReveal {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* TAJUK */
+
+#legacyScreen .legacy-eyebrow {
+  margin: 0 0 12px;
+  color: #9eafc2;
+  font-size: clamp(9px, 0.9vw, 12px);
+  letter-spacing: 0.28em;
+}
+
+#legacyScreen .legacy-title {
+  margin: 0;
+  color: #f4f0e7;
+  font-size: clamp(38px, 5.2vw, 68px);
+  font-weight: 300;
+  letter-spacing: 0.18em;
+  line-height: 1.15;
+}
+
+#legacyScreen .legacy-title span {
+  color: #dfc184;
+  font-weight: 500;
+  text-shadow: 0 0 25px rgba(223, 193, 132, 0.22);
+}
+
+#legacyScreen .legacy-gold-line {
+  width: clamp(65px, 8vw, 105px);
+  height: 1px;
+  margin: 17px 0 23px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    #d9b76f,
+    transparent
+  );
+  box-shadow: 0 0 12px rgba(217, 183, 111, 0.4);
+}
+
+/* LOGO SEKOLAH */
+
+#legacyScreen .legacy-logo-container {
+  position: relative;
+  width: clamp(150px, 17vw, 215px);
+  aspect-ratio: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 4px 0 25px;
+}
+
+#legacyScreen .legacy-logo-ring {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+#legacyScreen .legacy-logo-ring-outer {
+  inset: 0;
+  border: 1px solid rgba(218, 184, 112, 0.55);
+  box-shadow:
+    0 0 18px rgba(218, 184, 112, 0.12),
+    inset 0 0 18px rgba(218, 184, 112, 0.06);
+  animation: legacyRingGlow 4s ease-in-out infinite;
+}
+
+#legacyScreen .legacy-logo-ring-inner {
+  inset: 9px;
+  border: 1px solid rgba(100, 174, 224, 0.35);
+  box-shadow: 0 0 22px rgba(70, 155, 220, 0.12);
+}
+
+@keyframes legacyRingGlow {
+  0%, 100% {
+    box-shadow:
+      0 0 12px rgba(218, 184, 112, 0.10),
+      inset 0 0 12px rgba(218, 184, 112, 0.04);
+  }
+
+  50% {
+    box-shadow:
+      0 0 28px rgba(218, 184, 112, 0.30),
+      inset 0 0 20px rgba(218, 184, 112, 0.10);
+  }
+}
+
+#legacyScreen .legacy-logo-frame {
+  position: relative;
+  width: 72%;
+  aspect-ratio: 1;
+  padding: 9px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(225, 198, 145, 0.75);
+  border-radius: 50%;
+  background: rgba(242, 242, 237, 0.96);
+  box-shadow:
+    0 0 25px rgba(218, 184, 112, 0.18),
+    0 0 55px rgba(48, 132, 202, 0.16);
+  overflow: hidden;
+}
+
+#legacyScreen .legacy-school-logo {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  border-radius: 50%;
+  display: block;
+}
+
+/* NAMA SEKOLAH */
+
+#legacyScreen .legacy-school-name {
+  margin: 0;
+  color: #e5eaf0;
+  font-size: clamp(11px, 1.25vw, 16px);
+  font-weight: 400;
+  letter-spacing: 0.23em;
+  line-height: 1.9;
+}
+
+#legacyScreen .legacy-school-name span {
+  display: block;
+  color: #dfc184;
+  font-size: 1.25em;
+  font-weight: 600;
+  letter-spacing: 0.3em;
+}
+
+/* PENERANGAN */
+
+#legacyScreen .legacy-description {
+  max-width: 570px;
+  margin: 16px auto 0;
+  color: #aebdce;
+  font-size: clamp(11px, 1vw, 14px);
+  font-weight: 300;
+  line-height: 1.9;
+  letter-spacing: 0.035em;
+}
+
+/* FOOTER */
+
+#legacyScreen .legacy-footer {
+  margin: 34px 0 0;
+  color: #8294a9;
+  font-size: clamp(8px, 0.8vw, 10px);
+  letter-spacing: 0.25em;
+}
+
+#legacyScreen .legacy-footer span {
+  margin: 0 9px;
+  color: #d8b66f;
+}
+
+/* HIASAN GEOMETRI */
+
+#legacyScreen .legacy-corner {
+  position: absolute;
+  width: 65px;
+  height: 65px;
+  border-color: rgba(218, 185, 120, 0.45);
+  border-style: solid;
+  pointer-events: none;
+  z-index: 1;
+}
+
+#legacyScreen .legacy-corner-tl {
+  top: 22px;
+  left: 22px;
+  border-width: 1px 0 0 1px;
+}
+
+#legacyScreen .legacy-corner-br {
+  right: 22px;
+  bottom: 22px;
+  border-width: 0 1px 1px 0;
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 650px) {
+  #legacyScreen .legacy-content {
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+
+  #legacyScreen .legacy-title {
+    letter-spacing: 0.1em;
+  }
+
+  #legacyScreen .legacy-school-name {
+    letter-spacing: 0.12em;
+  }
+
+  #legacyScreen .legacy-school-name span {
+    letter-spacing: 0.2em;
+  }
+
+  #legacyScreen .legacy-description {
+    max-width: 90%;
+  }
+
+  #legacyScreen .legacy-corner {
+    width: 35px;
+    height: 35px;
+  }
+}
+
+@media (max-height: 700px) {
+  #legacyScreen .legacy-content {
+    padding-top: 55px;
+    padding-bottom: 18px;
+  }
+
+  #legacyScreen .legacy-logo-container {
+    width: clamp(120px, 15vh, 165px);
+    margin-bottom: 15px;
+  }
+
+  #legacyScreen .legacy-gold-line {
+    margin: 10px 0 15px;
+  }
+
+  #legacyScreen .legacy-footer {
+    margin-top: 20px;
+  }
+}
+
+
+/* =====================================================
+   THE JOURNEY — HYBRID CINEMATIC MONTAGE
+===================================================== */
+
+/* KAWALAN UTAMA SKRIN */
+#journeyScreen {
+  position: relative;
+  min-height: 100vh;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+/* LAPISAN MONTaj GAMBAR */
+#journeyScreen .journey-montage {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  z-index: 0;
+}
+
+/* SEMUA GAMBAR BERADA PADA LAPISAN YANG SAMA */
+#journeyScreen .journey-slide {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  visibility: hidden;
+  overflow: hidden;
+  transition:
+    opacity 1.5s ease,
+    visibility 1.5s ease;
+}
+
+/* GAMBAR AKTIF SAHAJA DIPAPARKAN */
+#journeyScreen .journey-slide.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* GAMBAR MEMENUHI SKRIN */
+#journeyScreen .journey-slide img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  transform: scale(1);
+  filter: saturate(0.85) brightness(0.85);
+}
+
+/* ZOOM PERLAHAN PADA GAMBAR AKTIF */
+#journeyScreen .journey-slide.active img {
+  animation: journeyKenBurns 8s ease-in-out forwards;
+}
+
+@keyframes journeyKenBurns {
+  from {
+    transform: scale(1);
+  }
+
+  to {
+    transform: scale(1.10);
+  }
+}
+
+/* OVERLAY ROYAL MIDNIGHT */
+#journeyScreen .journey-montage-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background:
+    linear-gradient(
+      90deg,
+      rgba(3, 10, 22, 0.72) 0%,
+      rgba(5, 16, 32, 0.38) 50%,
+      rgba(3, 10, 22, 0.72) 100%
+    ),
+    linear-gradient(
+      180deg,
+      rgba(3, 10, 22, 0.38) 0%,
+      rgba(3, 10, 22, 0.25) 40%,
+      rgba(3, 10, 22, 0.88) 100%
+    );
+}
+
+/* CAHAYA LATAR DI ATAS GAMBAR */
+#journeyScreen .journey-background-glow {
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* KANDUNGAN UTAMA DI HADAPAN GAMBAR */
+#journeyScreen .journey-content {
+  position: relative;
+  z-index: 2;
+}
+
+/* LABEL ATAS */
+#journeyScreen .journey-top-label {
+  position: absolute;
+  z-index: 3;
+}
+
+/* HIASAN SUDUT */
+#journeyScreen .journey-corner {
+  z-index: 3;
+}
+
+/* MESRA PAPARAN PROJEKTOR */
+@media (max-width: 768px) {
+  #journeyScreen .journey-slide img {
+    object-position: center;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #journeyScreen .journey-slide,
+  #journeyScreen .journey-slide img {
+    animation: none;
+    transition: none;
+  }
+}
+
+
+/* =====================================================
+   THE JOURNEY — CINEMATIC NARRATIVE
+   STEP 5.6E-2
+===================================================== */
+
+#journeyScreen .journey-scene-narrative {
+  position: relative;
+  z-index: 3;
+  width: min(90%, 650px);
+  margin: 18px auto 20px;
+  padding: 12px 20px;
+  text-align: center;
+
+  opacity: 1;
+  transform: translateY(0);
+
+  transition:
+    opacity 0.45s ease,
+    transform 0.45s ease;
+}
+
+/* LABEL KECIL DI ATAS TAJUK */
+
+#journeyScreen .journey-scene-label {
+  margin: 0 0 8px;
+  color: #c6a96b;
+  font-size: clamp(8px, 0.8vw, 11px);
+  font-weight: 500;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+}
+
+/* TAJUK NARATIF */
+
+#journeyScreen .journey-scene-title {
+  margin: 0;
+  color: #e5c989;
+  font-size: clamp(23px, 3vw, 38px);
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  line-height: 1.25;
+
+  text-shadow:
+    0 0 12px rgba(224, 190, 120, 0.20),
+    0 0 28px rgba(224, 190, 120, 0.10);
+}
+
+/* GARISAN KEEMASAN */
+
+#journeyScreen .journey-scene-narrative::after {
+  content: "";
+  display: block;
+  width: 55px;
+  height: 1px;
+  margin: 12px auto;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    #d8b66f,
+    transparent
+  );
+  box-shadow: 0 0 10px rgba(216, 182, 111, 0.35);
+}
+
+/* PENERANGAN NARATIF */
+
+#journeyScreen .journey-scene-description {
+  max-width: 540px;
+  margin: 0 auto;
+  color: #e0e6ed;
+  font-size: clamp(11px, 1vw, 14px);
+  font-weight: 300;
+  line-height: 1.8;
+  letter-spacing: 0.045em;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.7);
+}
+
+/* ANIMASI KEMUNCULAN NARATIF */
+
+#journeyScreen .journey-scene-narrative.narrative-enter {
+  animation: journeyNarrativeReveal 0.9s ease both;
+}
+
+@keyframes journeyNarrativeReveal {
+  0% {
+    opacity: 0;
+    transform: translateY(18px);
+    filter: blur(5px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
+}
+
+/* KEADAAN KETIKA NARATIF BERTUKAR */
+
+#journeyScreen .journey-scene-narrative.narrative-exit {
+  opacity: 0;
+  transform: translateY(-10px);
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 650px) {
+  #journeyScreen .journey-scene-narrative {
+    width: 94%;
+    padding: 10px;
+    margin: 12px auto;
+  }
+
+  #journeyScreen .journey-scene-title {
+    letter-spacing: 0.15em;
+  }
+
+  #journeyScreen .journey-scene-description {
+    max-width: 95%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #journeyScreen .journey-scene-narrative,
+  #journeyScreen .journey-scene-narrative.narrative-enter {
+    animation: none;
+    transition: none;
+  }
+}
+
+
+/* =====================================================
+   THE JOURNEY — FLOATING CINEMATIC LIGHT PARTICLES
+   STEP 5.6F
+===================================================== */
+
+#journeyScreen .journey-montage-overlay {
+  overflow: hidden;
+}
+
+/* LAPISAN PARTIKEL PERTAMA */
+#journeyScreen .journey-montage-overlay::before {
+  content: "";
+  position: absolute;
+  inset: -20%;
+  pointer-events: none;
+
+  background-image:
+    radial-gradient(circle, rgba(229, 196, 127, 0.85) 1px, transparent 2px),
+    radial-gradient(circle, rgba(108, 190, 255, 0.75) 1px, transparent 2px),
+    radial-gradient(circle, rgba(235, 218, 174, 0.65) 1.5px, transparent 2.5px),
+    radial-gradient(circle, rgba(94, 165, 226, 0.65) 1px, transparent 2px);
+
+  background-size:
+    180px 190px,
+    240px 230px,
+    310px 270px,
+    370px 320px;
+
+  background-position:
+    20px 30px,
+    90px 120px,
+    170px 60px,
+    250px 180px;
+
+  opacity: 0.42;
+
+  animation: journeyParticlesDrift 24s linear infinite;
+}
+
+/* LAPISAN PARTIKEL KEDUA */
+#journeyScreen .journey-montage-overlay::after {
+  content: "";
+  position: absolute;
+  inset: -25%;
+  pointer-events: none;
+
+  background-image:
+    radial-gradient(circle, rgba(255, 222, 157, 0.75) 1px, transparent 2px),
+    radial-gradient(circle, rgba(91, 179, 245, 0.65) 1.5px, transparent 2.5px);
+
+  background-size:
+    280px 250px,
+    340px 310px;
+
+  background-position:
+    130px 80px,
+    40px 210px;
+
+  opacity: 0.28;
+
+  animation: journeyParticlesFloat 32s ease-in-out infinite alternate;
+}
+
+/* PERGERAKAN PARTIKEL */
+@keyframes journeyParticlesDrift {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+
+  to {
+    transform: translate3d(-35px, -55px, 0);
+  }
+}
+
+@keyframes journeyParticlesFloat {
+  from {
+    transform: translate3d(15px, 20px, 0);
+    opacity: 0.18;
+  }
+
+  to {
+    transform: translate3d(-20px, -35px, 0);
+    opacity: 0.38;
+  }
+}
+
+/* KURANGKAN ANIMASI JIKA DIPERLUKAN */
+@media (prefers-reduced-motion: reduce) {
+  #journeyScreen .journey-montage-overlay::before,
+  #journeyScreen .journey-montage-overlay::after {
+    animation: none;
+  }
+}
+
+
+/* =====================================================
+   THE JOURNEY — CINEMATIC SHOOTING STARS
+   STEP 5.6F-2A
+===================================================== */
+
+/* LAPISAN UTAMA METEOR */
+#journeyScreen .journey-meteor-layer {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  z-index: 2;
+  pointer-events: none;
+}
+
+/* BENTUK ASAS METEOR */
+#journeyScreen .journey-meteor {
+  position: absolute;
+  display: block;
+  width: clamp(130px, 17vw, 240px);
+  height: 4px;
+  border-radius: 50%;
+  opacity: 0;
+
+  transform-origin: right center;
+
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(66, 151, 232, 0.08) 30%,
+    rgba(84, 185, 255, 0.65) 65%,
+    rgba(255, 222, 157, 0.95) 92%,
+    #ffffff 100%
+  );
+
+  box-shadow:
+    0 0 8px rgba(88, 183, 255, 0.7),
+    0 0 18px rgba(88, 183, 255, 0.4),
+    0 0 30px rgba(225, 190, 120, 0.3);
+
+  will-change: transform, opacity;
+}
+
+/* KEPALA CAHAYA METEOR */
+#journeyScreen .journey-meteor::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  top: 50%;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+
+  transform: translate(50%, -50%);
+
+  background: #fff8e9;
+
+  box-shadow:
+    0 0 6px #ffffff,
+    0 0 14px #f4d18a,
+    0 0 25px rgba(255, 218, 145, 0.95),
+    0 0 42px rgba(87, 181, 255, 0.65);
+}
+
+/* VARIASI METEOR EMAS */
+#journeyScreen .journey-meteor.meteor-gold {
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(205, 151, 68, 0.08) 30%,
+    rgba(238, 190, 103, 0.65) 65%,
+    rgba(255, 225, 163, 0.95) 92%,
+    #ffffff 100%
+  );
+
+  box-shadow:
+    0 0 9px rgba(255, 209, 126, 0.8),
+    0 0 22px rgba(231, 177, 91, 0.5),
+    0 0 36px rgba(231, 177, 91, 0.25);
+}
+
+/* VARIASI METEOR BIRU */
+#journeyScreen .journey-meteor.meteor-blue {
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(45, 116, 204, 0.08) 30%,
+    rgba(68, 169, 255, 0.7) 65%,
+    rgba(160, 225, 255, 0.95) 92%,
+    #ffffff 100%
+  );
+}
+
+/* KEADAAN AKSESIBILITI */
+@media (prefers-reduced-motion: reduce) {
+  #journeyScreen .journey-meteor {
+    display: none;
+  }
+}
+
+
+/* =====================================================
+   THE JOURNEY — TYPOGRAPHY ENHANCEMENT
+   STEP 5.6F-3
+===================================================== */
+
+/* TAJUK UTAMA THE JOURNEY */
+#journeyScreen .journey-title {
+  font-size: clamp(48px, 6.2vw, 82px);
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  line-height: 1.15;
+
+  text-shadow:
+    0 0 18px rgba(222, 190, 125, 0.20),
+    0 0 35px rgba(222, 190, 125, 0.12);
+}
+
+/* LABEL DI BAHAGIAN ATAS */
+#journeyScreen .journey-top-label {
+  font-size: clamp(11px, 1.05vw, 14px);
+  letter-spacing: 0.28em;
+  font-weight: 500;
+}
+
+/* AYAT PENERANGAN UTAMA */
+#journeyScreen .journey-description {
+  font-size: clamp(15px, 1.35vw, 19px);
+  line-height: 1.9;
+  max-width: 780px;
+  font-weight: 400;
+  letter-spacing: 0.035em;
+
+  color: #edf1f7;
+
+  text-shadow:
+    0 2px 8px rgba(0, 0, 0, 0.9),
+    0 0 15px rgba(0, 0, 0, 0.5);
+}
+
+/* LABEL NARATIF */
+#journeyScreen .journey-scene-label {
+  font-size: clamp(11px, 1.1vw, 14px);
+  letter-spacing: 0.32em;
+  font-weight: 600;
+}
+
+/* TAJUK ILMU / USAHA / SEMANGAT / KENANGAN / KEJAYAAN */
+#journeyScreen .journey-scene-title {
+  font-size: clamp(36px, 4.5vw, 58px);
+  font-weight: 600;
+  letter-spacing: 0.20em;
+  line-height: 1.2;
+
+  text-shadow:
+    0 0 15px rgba(224, 190, 120, 0.35),
+    0 0 32px rgba(224, 190, 120, 0.18);
+}
+
+/* PENERANGAN NARATIF */
+#journeyScreen .journey-scene-description {
+  font-size: clamp(15px, 1.35vw, 19px);
+  line-height: 1.85;
+  max-width: 760px;
+  font-weight: 400;
+  letter-spacing: 0.045em;
+
+  color: #f0f3f8;
+
+  text-shadow:
+    0 2px 8px rgba(0, 0, 0, 0.95),
+    0 0 16px rgba(0, 0, 0, 0.5);
+}
+
+/* FOOTER */
+#journeyScreen .journey-footer {
+  font-size: clamp(11px, 0.95vw, 13px);
+  letter-spacing: 0.24em;
+  font-weight: 500;
+}
+
+/* KAD ILMU, USAHA DAN KEJAYAAN */
+#journeyScreen .journey-milestones {
+  font-size: clamp(14px, 1.15vw, 17px);
+}
+
+/* RESPONSIVE UNTUK PAPARAN KECIL */
+@media (max-width: 650px) {
+
+  #journeyScreen .journey-title {
+    font-size: clamp(36px, 9vw, 52px);
+    letter-spacing: 0.10em;
+  }
+
+  #journeyScreen .journey-scene-title {
+    font-size: clamp(30px, 8vw, 42px);
+    letter-spacing: 0.12em;
+  }
+
+  #journeyScreen .journey-description,
+  #journeyScreen .journey-scene-description {
+    font-size: 14px;
+    line-height: 1.7;
+  }
+
+  #journeyScreen .journey-top-label {
+    font-size: 9px;
+    letter-spacing: 0.18em;
+  }
+
+}
+
+
+/* =====================================================
+   THE JOURNEY — TOP LABEL SPACING FIX
+===================================================== */
+
+/* LABEL THE STORY OF OUR JOURNEY */
+#journeyScreen .journey-top-label {
+  position: absolute;
+  top: 25px;
+  left: 50%;
+  transform: translateX(-50%);
+
+  width: max-content;
+  max-width: 90%;
+  text-align: center;
+
+  font-size: clamp(10px, 0.9vw, 12px);
+  letter-spacing: 0.28em;
+  line-height: 1.5;
+
+  z-index: 5;
+}
+
+/* LABEL SETIAP PERJALANAN ADA CERITANYA */
+#journeyScreen .journey-eyebrow {
+  margin-top: 0;
+  margin-bottom: 14px;
+
+  position: relative;
+  z-index: 4;
+
+  font-size: clamp(10px, 0.95vw, 13px);
+  line-height: 1.6;
+}
+
+/* RUANG KANDUNGAN UTAMA */
+#journeyScreen .journey-content {
+  padding-top: 85px;
+}
+
+/* PAPARAN SKRIN RENDAH */
+@media (max-height: 700px) {
+  #journeyScreen .journey-top-label {
+    top: 16px;
+  }
+
+  #journeyScreen .journey-content {
+    padding-top: 65px;
   }
 }
