@@ -921,6 +921,7 @@ function revealFinale() {
   finaleStartedAt = performance.now();
   finaleEffectActive = true;
 
+
 fadeAudioVolume(backgroundMusic, 0.70, 1500);
 fadeAudioVolume(countdownAudio, 0.35, 1000);
 
@@ -1056,6 +1057,19 @@ function burstFinaleFirework(x, y, baseColor) {
 
 function startFinaleFireworks() {
   stopFinaleFireworks();
+
+  // Mainkan audio serentak dengan permulaan animasi bunga api.
+  const fireworksAudio = $("fireworksAudio");
+
+  if (soundEnabled && fireworksAudio) {
+    fireworksAudio.pause();
+    fireworksAudio.currentTime = 0;
+    fireworksAudio.volume = 0.85;
+
+    fireworksAudio.play().catch(error => {
+      console.warn("Audio bunga api gagal dimainkan:", error);
+    });
+  }
 
   if (
     !finaleFireworksCtx ||
@@ -2008,6 +2022,25 @@ function removeDigitalParticles() {
   digitalParticles = [];
 }
 
+// KAWALAN AUDIO HOLOGRAM TAPAK TANGAN
+function playPalmAudio(audioId, volume = 1) {
+  const audio = $(audioId);
+
+  if (!audio || !soundEnabled) return;
+
+  audio.pause();
+  audio.currentTime = 0;
+  audio.volume = volume;
+
+    // Perlahankan muzik ketika bunyi pengesahan dimainkan.
+  if (audioId === "palmVerifiedAudio" && backgroundMusic) {
+    fadeAudioVolume(backgroundMusic, 0.14, 600);
+  }
+  
+  audio.play().catch(error => {
+    console.warn(`Audio ${audioId} gagal dimainkan:`, error);
+  });
+}
 
 // SIMULASI IMBASAN TAPAK TANGAN
 function beginPalmScan() {
@@ -2025,13 +2058,7 @@ function beginPalmScan() {
   palmStatus.innerHTML =
     '<span class="palm-status-dot"></span> MENGIMBAS ASPIRASI...';
 
-  playTone({
-    frequency: 520,
-    endFrequency: 920,
-    duration: 0.35,
-    volume: 0.09,
-    type: "sine"
-  });
+    playPalmAudio("palmScanAudio", 0.75);
 
   let elapsed = 0;
 
@@ -2063,42 +2090,76 @@ if (palmScanningText) {
       palmButton.querySelector(".palm-button-label").textContent =
         "IMBASAN BERJAYA";
 
-      playTone({
-        frequency: 880,
-        endFrequency: 1320,
-        duration: 0.4,
-        volume: 0.14,
-        type: "triangle"
-      });
+            playPalmAudio("palmVerifiedAudio", 0.9);
 
       
-        // Beri masa untuk perasmi melihat pengesahan.
-        palmScanTimer = setTimeout(() => {
-          palmScanTimer = null;
+              // Tunggu bunyi pengesahan selesai sebelum voice-over.
+      const verifiedAudio = $("palmVerifiedAudio");
+      const voiceoverAudio = $("palmVoiceoverAudio");
 
+      const continueToCountdown = () => {
+                // Pulihkan muzik latar selepas voice-over selesai.
+        fadeAudioVolume(
+          backgroundMusic,
+          AUDIO_CONFIG.musicVolume,
+          900
+        );
+        if (runId !== palmScanRunId || currentScreen !== "palm") {
+          return;
+        }
+
+        // Mulakan transisi ke countdown.
+        createDigitalParticles($("palmScreen"));
+
+        setTimeout(() => {
           if (runId !== palmScanRunId || currentScreen !== "palm") {
+            $("palmScreen").classList.remove("palm-transition-out");
             return;
           }
 
-          // Mulakan transisi ke countdown.
-          createDigitalParticles($("palmScreen"));
+          $("palmScreen").classList.remove("palm-transition-out");
 
-          setTimeout(() => {
-            if (runId !== palmScanRunId || currentScreen !== "palm") {
-              $("palmScreen").classList.remove("palm-transition-out");
-              return;
-            }
+          palmButton.disabled = false;
+          palmButton.querySelector(".palm-button-label").textContent =
+            "SENTUH UNTUK IMBAS";
 
-            $("palmScreen").classList.remove("palm-transition-out");
+          startGimmick();
+        }, 2300);
+      };
 
-            palmButton.disabled = false;
-            palmButton.querySelector(".palm-button-label").textContent =
-              "SENTUH UNTUK IMBAS";
+      const playOfficialVoiceover = () => {
+        if (runId !== palmScanRunId || currentScreen !== "palm") {
+          return;
+        }
 
-            // Countdown sedia ada bermula di sini.
-            startGimmick();
-          }, 2300);
-        }, 900);
+        if (!voiceoverAudio || !soundEnabled) {
+          continueToCountdown();
+          return;
+        }
+
+        voiceoverAudio.pause();
+        voiceoverAudio.currentTime = 0;
+        voiceoverAudio.volume = 1;
+
+        voiceoverAudio.onended = () => {
+          voiceoverAudio.onended = null;
+          continueToCountdown();
+        };
+
+        voiceoverAudio.play().catch(error => {
+          console.warn("Voice-over gagal dimainkan:", error);
+          continueToCountdown();
+        });
+      };
+
+      if (verifiedAudio && !verifiedAudio.paused) {
+        verifiedAudio.onended = () => {
+          verifiedAudio.onended = null;
+          playOfficialVoiceover();
+        };
+      } else {
+        playOfficialVoiceover();
+      }
 
     }
   }, 1000);
