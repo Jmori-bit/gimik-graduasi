@@ -16,51 +16,102 @@
   <main id="experience">
     <!-- SKRIN 1: PEMBUKAAN -->
     <section id="introScreen" class="screen active">
+
+  <div class="intro-background" aria-hidden="true"></div>
+
+  <audio
+    id="introMusic"
+    src="assets/audio/graduation-opening-music.mp3"
+    preload="auto"
+    loop
+  ></audio>
+
+<button
+  type="button"
+  id="introMusicButton"
+  class="intro-music-toggle"
+  aria-label="Mainkan muzik pembukaan"
+  aria-pressed="false"
+  title="Mainkan muzik pembukaan"
+>
+  <svg class="music-icon music-icon-off"
+       viewBox="0 0 24 24"
+       aria-hidden="true">
+    <path d="M11 5 6 9H3v6h3l5 4V5Z"
+          fill="none" stroke="currentColor"
+          stroke-width="1.7" stroke-linejoin="round"/>
+    <path d="m17 9 5 6m0-6-5 6"
+          fill="none" stroke="currentColor"
+          stroke-width="1.7" stroke-linecap="round"/>
+  </svg>
+
+  <svg class="music-icon music-icon-on"
+       viewBox="0 0 24 24"
+       aria-hidden="true">
+    <path d="M11 5 6 9H3v6h3l5 4V5Z"
+          fill="none" stroke="currentColor"
+          stroke-width="1.7" stroke-linejoin="round"/>
+    <path d="M15.5 8.5a5 5 0 0 1 0 7"
+          fill="none" stroke="currentColor"
+          stroke-width="1.7" stroke-linecap="round"/>
+    <path d="M18.5 5.5a9 9 0 0 1 0 13"
+          fill="none" stroke="currentColor"
+          stroke-width="1.7" stroke-linecap="round"/>
+  </svg>
+</button>
+
       <div class="top-label">
         <span class="status-dot"></span>
         MAJLIS RASMI SEKOLAH
       </div>
 
       
+<!-- Kumpulan kandungan pembukaan -->
+<div class="intro-content">
+
 <div class="school-logo" id="schoolLogo">
   <img src="assets/logo-sekolah.jpg" alt="Logo rasmi sekolah">
 </div>
 
 
-      <p class="eyebrow">MENGUKIR KENANGAN · MENCIPTA MASA DEPAN</p>
+      
+<p class="eyebrow">MENGUKIR KENANGAN · MENCIPTA MASA DEPAN</p>
 
-      <h1 class="main-title">
-        SENTUHAN
-        <span>ASPIRASI DIGITAL</span>
-      </h1>
+<h1 class="main-title">
+  MAJLIS GRADUASI
+  <span>TINGKATAN 5</span>
+</h1>
 
-      <div class="gold-line"></div>
+<div class="gold-line"></div>
 
-      <p class="event-name" id="eventName">
-        MAJLIS GRADUASI 2026
-      </p>
+<!-- Kekalkan ID untuk kegunaan JavaScript -->
+<p class="event-name" id="eventName" aria-hidden="true">
+  MAJLIS GRADUASI 2026
+</p>
 
-      <p class="school-name" id="schoolName">
-        SMK TELOK DATOK
-      </p>
+<p class="batch-name">
+  BATCH SUPERANUS 2026
+</p>
 
-      <div class="hero-message">
-        <p class="slogan">“Satu Sentuhan, Seribu Impian”</p>
-        <h2>Masa Depan Bermula Di Sini</h2>
-        <p class="intro-description">
-          Setiap impian bermula dengan keberanian.
-          Setiap kejayaan bermula dengan satu langkah.
-        </p>
-      </div>
+<p class="school-name" id="schoolName">
+  SMK TELOK DATOK
+</p>
 
-      <button id="startButton" class="touch-button">
-        <span class="touch-ring"></span>
-        <span class="touch-icon">✦</span>
-        <span>SENTUH UNTUK MERASMIKAN</span>
-        <span class="button-arrow">↗</span>
-      </button>
+<div class="hero-message">
+  <h2>Masa Depan Bermula Di Sini</h2>
+</div>
 
-      <p class="instruction">SILA SENTUH BUTANG UNTUK MEMULAKAN GIMIK</p>
+<button id="startButton" class="touch-button">
+  <span class="touch-ring"></span>
+  <span class="touch-icon">✦</span>
+  <span>SENTUH UNTUK MERASMIKAN</span>
+  <span class="button-arrow">↗</span>
+</button>
+
+<p class="instruction">SENTUH UNTUK MEMULAKAN GIMIK</p>
+
+</div><!-- /intro-content -->
+
       <div class="corner-mark corner-tl"></div>
       <div class="corner-mark corner-br"></div>
     </section>
@@ -158,10 +209,8 @@
     <div class="journey-gold-line"></div>
 
     <p class="journey-description">
-      Di sinilah bermulanya sebuah perjalanan.
-      Dipenuhi ilmu, usaha, pengorbanan dan kenangan
-      yang membentuk langkah menuju kejayaan.
-    </p>
+  Lima tahun. Seribu cerita. Satu perjalanan.
+</p>
 
     
 <!-- NARATIF DINAMIK THE JOURNEY -->
@@ -181,37 +230,12 @@
 
 </div>
 
-    
-    <div class="journey-milestones">
-
-      <div class="journey-milestone">
-        <span class="journey-number">01</span>
-        <span class="journey-symbol">✦</span>
-        <h3>ILMU</h3>
-        <p>Menyemai impian dan harapan.</p>
-      </div>
-
-      <div class="journey-milestone">
-        <span class="journey-number">02</span>
-        <span class="journey-symbol">◇</span>
-        <h3>USAHA</h3>
-        <p>Mengharungi cabaran bersama.</p>
-      </div>
-
-      <div class="journey-milestone">
-        <span class="journey-number">03</span>
-        <span class="journey-symbol">✧</span>
-        <h3>KEJAYAAN</h3>
-        <p>Melangkah menuju masa depan.</p>
-      </div>
-
-    </div>
 
     <p class="journey-footer">
-      SMK TELOK DATOK
-      <span>·</span>
-      MAJLIS GRADUASI 2026
-    </p>
+  SMK TELOK DATOK
+  <span>·</span>
+  BATCH SUPERANUS 2026
+</p>
 
   </div>
 
@@ -418,11 +442,22 @@
     <div class="palm-school-mark">
       <img src="assets/logo-sekolah.jpg" alt="Logo rasmi sekolah">
     </div>
-    <p class="palm-school-caption" id="palmSchoolCaption">SMK TELOK DATOK</p>
-    <p class="palm-event-kicker">MAJLIS RASMI SEKOLAH</p>
-    <h2 class="palm-event-title">MAJLIS<br><span>GRADUASI 2026</span></h2>
-    <div class="palm-gold-rule"><span>◆</span></div>
-    <p class="palm-event-subtitle">SENTUHAN ASPIRASI DIGITAL</p>
+    
+<p class="palm-school-caption" id="palmSchoolCaption">
+  SMK TELOK DATOK
+</p>
+
+<h2 class="palm-event-title">
+  MAJLIS GRADUASI<br>
+  <span>TINGKATAN 5</span>
+</h2>
+
+<div class="palm-gold-rule"><span>◆</span></div>
+
+<p class="palm-event-subtitle">
+  BATCH SUPERANUS 2026
+</p>
+
 
     <div class="palm-official">
       
@@ -435,22 +470,24 @@
   <small>GAMBAR PERASMI</small>
 </div>
       <div class="palm-official-info">
-        <p>DIRASMIKAN OLEH</p>
-        <div class="palm-mini-rule"></div>
-        <h3>TUAN MOHD ZAFROL BIN ABDULLAH</h3>
-        <span>PENGETUA</span>
-        <span>SMK TELOK DATOK</span>
-      </div>
+  <p>DIRASMIKAN OLEH</p>
+  <div class="palm-mini-rule"></div>
+  <h3>ENCIK BADRUL HISYAM BIN MD KASSIM</h3>
+  <span>YDP PIBG</span>
+  <span>SMK TELOK DATOK</span>
+</div>
     </div>
 
     <div class="palm-event-details">
-      <div class="palm-detail-icon">▦</div>
-      <div><b>TARIKH</b><span>14 NOVEMBER 2026 (SABTU)</span></div>
-      <div class="palm-detail-icon">◷</div>
-      <div><b>MASA</b><span>8.00 PAGI</span></div>
-      <div class="palm-detail-icon">⌖</div>
-      <div><b>TEMPAT</b><span>DEWAN SEKOLAH</span></div>
-    </div>
+  <div class="palm-detail-icon">▦</div>
+  <div><b>TARIKH</b><span>14 NOVEMBER 2026 (SABTU)</span></div>
+
+  <div class="palm-detail-icon">◷</div>
+  <div><b>MASA</b><span>9.00 PAGI</span></div>
+
+  <div class="palm-detail-icon">⌖</div>
+  <div><b>TEMPAT</b><span>DE SABIL HOMESTAY & HALL</span></div>
+</div>
   </aside>
 </section>
 
@@ -498,38 +535,54 @@
   <div class="final-content">
 
         
-<div class="final-emblem final-school-emblem">
-  <img
-    src="assets/logo-sekolah.jpg"
-    alt="Logo rasmi SMK Telok Datok"
-  />
+
+<div class="final-content final-banner-layout">
+
+  <div class="final-emblem final-school-emblem">
+    <img
+      src="assets/logo-sekolah.jpg"
+      alt="Logo rasmi SMK Telok Datok"
+    />
+  </div>
+
+  <p class="final-eyebrow">
+    SMK TELOK DATOK MEMPERSEMBAHKAN
+  </p>
+
+  <h2 class="final-title">
+    MAJLIS <span>GRADUASI</span>
+  </h2>
+
+  <div class="final-gold-divider">
+    <span></span>
+    <i>✦</i>
+    <span></span>
+  </div>
+
+  <p class="final-batch">
+    TINGKATAN 5
+    <span>|</span>
+    BATCH SUPERANUS
+  </p>
+
+  <p class="final-year" id="finalYear">2026</p>
+
+  <div class="final-official-block">
+    <p class="final-official-label">DISEMPURNAKAN OLEH</p>
+
+    <h3>ENCIK BADRUL HISYAM BIN MD KASSIM</h3>
+
+    <p>YDP PIBG SMK TELOK DATOK</p>
+  </div>
+
+  <div class="final-event-divider"></div>
+
+  <p class="final-slogan">
+    SATU SENTUHAN, SERIBU IMPIAN
+  </p>
+
 </div>
 
-        <p class="eyebrow">DETIK BERSEJARAH · GENERASI GEMILANG</p>
-
-        <p class="final-school" id="finalSchoolName">
-          SMK TELOK DATOK
-        </p>
-
-        <h2 class="final-title">
-          MAJLIS <span>GRADUASI</span>
-        </h2>
-
-        <div class="gold-line"></div>
-
-        <p class="final-year" id="finalYear">2026</p>
-
-        <h3 class="congratulations">
-          TAHNIAH KEPADA SEMUA GRADUAN
-        </h3>
-
-        <p class="final-quote">
-          “Melangkah dengan ilmu, melakar masa depan
-          dengan kejayaan.”
-        </p>
-
-        <p class="final-slogan">SATU SENTUHAN, SERIBU IMPIAN</p>
-      </div>
 
       <p class="photo-hint">
         MERAKAM KENANGAN · MENGHARGAI PERJUANGAN

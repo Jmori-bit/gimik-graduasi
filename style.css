@@ -4606,3 +4606,1748 @@ top: calc(50% - 40px) !important;
     padding-top: 65px;
   }
 }
+
+
+/* ==========================================
+   INTRO SCREEN — RESPONSIVE SIZING REFINEMENT
+   Fokus: Tablet Landscape, Laptop dan Projektor
+   ========================================== */
+
+#introScreen {
+  box-sizing: border-box;
+  justify-content: center;
+  padding: clamp(16px, 3vh, 28px) 5vw;
+}
+
+/* Logo sekolah */
+#introScreen .school-logo {
+  width: clamp(48px, min(6vw, 8vh), 70px);
+  height: clamp(48px, min(6vw, 8vh), 70px);
+  flex: 0 0 auto;
+  margin-bottom: clamp(8px, 1.5vh, 15px);
+}
+
+#introScreen .school-logo img {
+  padding: 6px;
+}
+
+/* Label pengenalan */
+#introScreen .eyebrow {
+  margin: 3px 0 clamp(8px, 1.5vh, 14px);
+}
+
+/* Tajuk utama */
+#introScreen .main-title {
+  font-size: clamp(30px, min(5.1vw, 8vh), 66px);
+  line-height: 1.12;
+}
+
+/* Garisan emas */
+#introScreen .gold-line {
+  margin: clamp(10px, 1.8vh, 20px) auto;
+}
+
+/* Maklumat majlis */
+#introScreen .event-name {
+  font-size: clamp(13px, min(1.7vw, 2.5vh), 20px);
+}
+
+#introScreen .school-name {
+  font-size: clamp(10px, min(1.2vw, 1.8vh), 15px);
+}
+
+/* Mesej utama */
+#introScreen .hero-message {
+  margin: clamp(12px, 2.2vh, 21px) 0;
+}
+
+#introScreen .slogan {
+  font-size: clamp(13px, min(1.55vw, 2.5vh), 19px);
+  margin-bottom: 7px;
+}
+
+#introScreen .hero-message h2 {
+  font-size: clamp(19px, min(2.5vw, 4vh), 32px);
+}
+
+#introScreen .intro-description {
+  font-size: clamp(11px, min(1.15vw, 1.8vh), 14px);
+  line-height: 1.5;
+}
+
+/* Butang mula */
+#introScreen .touch-button {
+  min-height: 54px;
+  padding: 14px 26px;
+  flex: 0 0 auto;
+}
+
+/* Arahan bawah */
+#introScreen .instruction {
+  margin-top: clamp(10px, 1.8vh, 18px);
+}
+
+/* Pelarasan khas untuk viewport rendah */
+@media (max-height: 760px) {
+  #introScreen {
+    padding-top: 14px;
+    padding-bottom: 14px;
+  }
+
+  #introScreen .hero-message {
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+
+  #introScreen .gold-line {
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+
+  #introScreen .instruction {
+    margin-top: 10px;
+  }
+}
+
+
+/* ==========================================
+   JOURNEY SCREEN — RESPONSIVE SIZING REFINEMENT
+   Fokus: Tablet Landscape, Laptop dan Projektor
+   ========================================== */
+
+#journeyScreen .journey-content {
+  box-sizing: border-box;
+  width: min(100%, 1050px);
+  padding-left: clamp(16px, 2vw, 24px);
+  padding-right: clamp(16px, 2vw, 24px);
+}
+
+/* Tajuk utama */
+#journeyScreen .journey-title {
+  font-size: clamp(38px, min(6.2vw, 8vh), 76px);
+  line-height: 1.1;
+}
+
+/* Penerangan utama */
+#journeyScreen .journey-description {
+  font-size: clamp(13px, min(1.25vw, 2.1vh), 17px);
+  line-height: 1.65;
+  max-width: 760px;
+}
+
+/* Naratif dinamik */
+#journeyScreen .journey-scene-narrative {
+  width: min(90%, 650px);
+  margin: clamp(10px, 2vh, 18px) auto;
+  padding: clamp(8px, 1.5vh, 12px) 16px;
+}
+
+#journeyScreen .journey-scene-title {
+  font-size: clamp(30px, min(4.5vw, 6vh), 58px);
+  line-height: 1.15;
+}
+
+#journeyScreen .journey-scene-description {
+  font-size: clamp(13px, min(1.25vw, 2.1vh), 17px);
+  line-height: 1.6;
+}
+
+/* Tiga kad milestone */
+#journeyScreen .journey-milestones {
+  gap: clamp(12px, 2.5vw, 30px);
+  margin-top: clamp(18px, 3vh, 38px);
+}
+
+#journeyScreen .journey-milestone {
+  min-height: 130px;
+  padding: 18px 12px;
+}
+
+/* Footer */
+#journeyScreen .journey-footer {
+  margin-top: clamp(18px, 3vh, 32px);
+}
+
+/* Pelarasan khas untuk viewport rendah */
+@media (max-height: 760px) {
+  #journeyScreen .journey-content {
+    padding-top: 60px;
+    padding-bottom: 14px;
+  }
+
+  #journeyScreen .journey-content .eyebrow {
+    margin-bottom: 8px;
+  }
+
+  #journeyScreen .journey-gold-line {
+    margin: 12px 0;
+  }
+
+  #journeyScreen .journey-scene-narrative {
+    margin-top: 8px;
+    margin-bottom: 8px;
+    padding-top: 6px;
+    padding-bottom: 6px;
+  }
+
+  #journeyScreen .journey-scene-narrative::after {
+    margin: 8px auto;
+  }
+
+  #journeyScreen .journey-milestones {
+    margin-top: 16px;
+  }
+
+  #journeyScreen .journey-milestone {
+    min-height: 112px;
+    padding: 14px 10px;
+  }
+
+  #journeyScreen .journey-symbol {
+    margin-bottom: 6px;
+    font-size: 22px;
+  }
+
+  #journeyScreen .journey-footer {
+    margin-top: 16px;
+  }
+}
+
+
+/* ==========================================
+   LEGACY SCREEN — RESPONSIVE SIZING REFINEMENT
+   Fokus: Tablet Landscape, Laptop dan Projektor
+   ========================================== */
+
+#legacyScreen .legacy-content {
+  box-sizing: border-box;
+  width: min(92%, 1000px);
+  padding: clamp(48px, 7vh, 70px) 20px 20px;
+}
+
+/* Eyebrow */
+#legacyScreen .legacy-eyebrow {
+  margin-bottom: clamp(8px, 1.5vh, 12px);
+}
+
+/* Tajuk utama */
+#legacyScreen .legacy-title {
+  font-size: clamp(36px, min(5.2vw, 7vh), 64px);
+  line-height: 1.12;
+}
+
+/* Garisan emas */
+#legacyScreen .legacy-gold-line {
+  margin: clamp(10px, 1.8vh, 17px) 0
+          clamp(14px, 2.5vh, 23px);
+}
+
+/* Logo sekolah */
+#legacyScreen .legacy-logo-container {
+  width: clamp(120px, min(17vw, 23vh), 190px);
+  margin: 4px 0 clamp(14px, 2.5vh, 22px);
+}
+
+/* Nama sekolah */
+#legacyScreen .legacy-school-name {
+  font-size: clamp(10px, min(1.25vw, 1.7vh), 15px);
+  line-height: 1.7;
+}
+
+/* Penerangan */
+#legacyScreen .legacy-description {
+  max-width: 570px;
+  margin-top: clamp(10px, 1.8vh, 16px);
+  font-size: clamp(11px, min(1vw, 1.6vh), 14px);
+  line-height: 1.7;
+}
+
+/* Footer */
+#legacyScreen .legacy-footer {
+  margin-top: clamp(18px, 3vh, 28px);
+}
+
+/* Pelarasan khas untuk viewport rendah */
+@media (max-height: 760px) {
+  #legacyScreen .legacy-content {
+    padding-top: 48px;
+    padding-bottom: 12px;
+  }
+
+  #legacyScreen .legacy-logo-container {
+    width: clamp(115px, min(15vw, 20vh), 155px);
+    margin-bottom: 12px;
+  }
+
+  #legacyScreen .legacy-gold-line {
+    margin-top: 9px;
+    margin-bottom: 12px;
+  }
+
+  #legacyScreen .legacy-description {
+    margin-top: 9px;
+    line-height: 1.55;
+  }
+
+  #legacyScreen .legacy-footer {
+    margin-top: 14px;
+  }
+}
+
+
+/* ==========================================
+   SIGNATURE SCREEN — RESPONSIVE SIZING
+   SENTUHAN ASPIRASI DIGITAL 2.0
+   Fokus: Tablet Landscape, Laptop dan Projektor
+   ========================================== */
+
+/* Ruang keseluruhan skrin */
+#signatureScreen.signature-screen {
+  box-sizing: border-box;
+  padding-top: clamp(54px, 7vh, 68px);
+  padding-bottom: clamp(48px, 6vh, 58px);
+}
+
+/* Tajuk tandatangan */
+#signatureScreen .signature-heading {
+  margin-bottom: clamp(12px, 2vh, 18px);
+}
+
+#signatureScreen .signature-heading h2 {
+  font-size: clamp(25px, min(4vw, 6vh), 46px);
+  line-height: 1.15;
+}
+
+/* Kad tandatangan */
+#signatureScreen .signature-card {
+  width: min(900px, 90vw);
+  padding: clamp(14px, 2vw, 22px);
+  box-sizing: border-box;
+}
+
+/* Bahagian tajuk kad */
+#signatureScreen .signature-card-header {
+  margin-bottom: 12px;
+}
+
+/* Ruang kertas tandatangan */
+#signatureScreen .signature-paper {
+  height: clamp(190px, 32vh, 270px);
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Butang pilihan warna dakwat */
+#signatureScreen .signature-color {
+  width: 40px;
+  height: 40px;
+  flex: 0 0 40px;
+}
+
+/* Jarak kawalan tandatangan */
+#signatureScreen .signature-toolbar {
+  gap: 12px;
+  margin-top: 15px;
+}
+
+/* Butang Padam dan Sahkan */
+#signatureScreen .signature-secondary,
+#signatureScreen .signature-primary {
+  min-height: 48px;
+  padding: 12px 18px;
+}
+
+/* Footer */
+#signatureScreen .signature-footer {
+  bottom: 2.5%;
+  font-size: 9px;
+}
+
+/* Pelarasan untuk viewport rendah */
+@media (max-height: 760px) {
+  #signatureScreen.signature-screen {
+    padding-top: 52px;
+    padding-bottom: 48px;
+  }
+
+  #signatureScreen .signature-heading {
+    margin-bottom: 12px;
+  }
+
+  #signatureScreen .signature-card-header {
+    margin-bottom: 10px;
+  }
+}
+
+/* Pelarasan tambahan untuk skrin sangat rendah */
+@media (max-height: 650px) {
+  #signatureScreen .signature-paper {
+    height: clamp(160px, 28vh, 190px);
+  }
+
+  #signatureScreen .signature-card {
+    padding: 12px;
+  }
+
+  #signatureScreen .signature-color {
+    width: 36px;
+    height: 36px;
+    flex-basis: 36px;
+  }
+
+  #signatureScreen .signature-toolbar {
+    margin-top: 10px;
+    gap: 10px;
+  }
+
+  #signatureScreen .signature-secondary,
+  #signatureScreen .signature-primary {
+    min-height: 44px;
+  }
+}
+
+
+
+/* ==========================================
+   PALM HOLOGRAM — SIZE & CENTER ALIGNMENT
+   Pelarasan khas imej tangan dan garisan imbasan
+   ========================================== */
+
+/* Bekas hologram sebagai titik rujukan */
+#palmScreen .palm-scan-button {
+  position: relative;
+  overflow: hidden;
+}
+
+/* Besarkan dan pusatkan tapak tangan */
+#palmScreen .palm-scan-button img.palm-illustration {
+  position: absolute !important;
+
+  left: 45% !important;
+  top: 50% !important;
+
+  width: auto !important;
+  height: 94% !important;
+  max-width: 90% !important;
+  max-height: none !important;
+
+  object-fit: contain;
+  object-position: center;
+
+  transform: translate(-50%, -50%) !important;
+  transform-origin: center center;
+
+  pointer-events: none;
+  user-select: none;
+}
+
+/* Garisan imbasan tepat di tengah tapak tangan */
+#palmScreen .palm-scan-line {
+  left: 5% !important;
+  right: 5% !important;
+  top: 50% !important;
+
+  height: 3px;
+  transform: translateY(-50%);
+  z-index: 2;
+}
+
+/* Cincin sasaran juga dipusatkan */
+#palmScreen .palm-target-ring {
+  left: 50% !important;
+  top: 50% !important;
+
+  width: 48%;
+  height: 48%;
+
+  transform: translate(-50%, -50%);
+}
+
+
+/* ==========================================
+   COUNTDOWN SCREEN — RESPONSIVE REFINEMENT
+   SENTUHAN ASPIRASI DIGITAL 2.0
+   Fokus: Tablet Landscape, Laptop dan Projektor
+   ========================================== */
+
+/* Susun atur keseluruhan */
+#countdownScreen {
+  box-sizing: border-box;
+  padding: clamp(16px, 3vh, 30px) 20px;
+  gap: 0;
+  justify-content: center;
+  overflow: hidden;
+}
+
+/* Tajuk kecil di bahagian atas */
+#countdownScreen .eyebrow {
+  margin-bottom: 8px;
+  font-size: clamp(10px, 1vw, 13px);
+  letter-spacing: 0.2em;
+}
+
+/* Tajuk utama */
+#countdownScreen .countdown-heading {
+  margin-top: 0;
+  margin-bottom: 8px;
+  font-size: clamp(25px, min(3.5vw, 5vh), 42px);
+  line-height: 1.15;
+}
+
+/* Pentas hologram */
+#countdownScreen .countdown-stage {
+  width: min(36vw, 42vh, 380px);
+  height: auto;
+  aspect-ratio: 1;
+  flex: 0 0 auto;
+  margin: clamp(10px, 2vh, 18px) auto;
+}
+
+/* Nombor countdown */
+#countdownScreen .countdown-number {
+  width: 52%;
+  font-size: clamp(72px, min(12vw, 17vh), 150px);
+  line-height: 1;
+}
+
+/* Teks dinamik selepas countdown */
+#countdownScreen .countdown-caption {
+  margin-top: 8px;
+  margin-bottom: 8px;
+  font-size: clamp(13px, 1.5vw, 19px);
+  line-height: 1.3;
+}
+
+/* Subtitle */
+#countdownScreen .countdown-subtitle {
+  margin-top: 4px;
+  font-size: clamp(11px, 1vw, 14px);
+  line-height: 1.5;
+}
+
+/* Pelarasan untuk viewport rendah */
+@media (max-height: 760px) {
+  #countdownScreen {
+    padding-top: 14px;
+    padding-bottom: 14px;
+  }
+
+  #countdownScreen .countdown-heading {
+    margin-bottom: 4px;
+  }
+
+  #countdownScreen .countdown-stage {
+    width: min(34vw, 39vh, 340px);
+    margin-top: 8px;
+    margin-bottom: 8px;
+  }
+
+  #countdownScreen .countdown-caption {
+    margin-top: 5px;
+    margin-bottom: 5px;
+  }
+
+  #countdownScreen .countdown-subtitle {
+    margin-top: 2px;
+  }
+}
+
+/* Skrin sangat rendah */
+@media (max-height: 650px) {
+  #countdownScreen .countdown-stage {
+    width: min(32vw, 36vh, 290px);
+    margin-top: 5px;
+    margin-bottom: 5px;
+  }
+
+  #countdownScreen .countdown-heading {
+    font-size: clamp(23px, 3vw, 34px);
+  }
+
+  #countdownScreen .countdown-caption {
+    font-size: 13px;
+  }
+
+  #countdownScreen .countdown-subtitle {
+    font-size: 11px;
+  }
+}
+
+
+/* ==========================================
+   FINAL SCREEN — RESPONSIVE REFINEMENT
+   SENTUHAN ASPIRASI DIGITAL 2.0
+   Fokus: Tablet Landscape, Laptop dan Projektor
+   ========================================== */
+
+/* Ruang keseluruhan kandungan finale */
+#finalScreen .final-content {
+  box-sizing: border-box;
+  width: min(100%, 1050px);
+  margin-left: auto;
+  margin-right: auto;
+  padding: 8px 20px 0 !important;
+  text-align: center;
+}
+
+/* Logo rasmi sekolah */
+#finalScreen .final-school-emblem {
+  width: clamp(68px, 8vh, 96px);
+  height: clamp(68px, 8vh, 96px);
+  margin: 0 auto 12px;
+  padding: 7px;
+}
+
+/* Eyebrow */
+#finalScreen .final-content > .eyebrow {
+  margin-top: 4px;
+  margin-bottom: 8px;
+  font-size: clamp(9px, 1vw, 13px);
+  letter-spacing: 0.18em;
+  line-height: 1.5;
+}
+
+/* Nama sekolah */
+#finalScreen .final-school {
+  margin-top: 0;
+  margin-bottom: 8px;
+  font-size: clamp(11px, 1.2vw, 15px);
+  letter-spacing: 0.2em;
+  line-height: 1.5;
+}
+
+/* Tajuk utama graduasi */
+#finalScreen .final-title {
+  margin-top: 4px;
+  font-size: clamp(34px, min(6vw, 8vh), 76px);
+  line-height: 1.12;
+  letter-spacing: 0.1em;
+}
+
+/* Garisan emas */
+#finalScreen .gold-line {
+  margin: clamp(8px, 1.5vh, 14px) auto;
+}
+
+/* Tahun graduasi */
+#finalScreen .final-year {
+  margin: 0;
+  font-size: clamp(28px, min(4vw, 5.5vh), 46px);
+  line-height: 1.1;
+}
+
+/* Ucapan tahniah */
+#finalScreen .congratulations {
+  margin: clamp(12px, 2vh, 20px) 0 10px;
+  font-size: clamp(13px, 1.8vw, 22px);
+  line-height: 1.3;
+}
+
+/* Kata-kata inspirasi */
+#finalScreen .final-quote {
+  max-width: 760px;
+  margin: 0 auto;
+  font-size: clamp(12px, 1.3vw, 16px);
+  line-height: 1.6;
+}
+
+/* Slogan utama */
+#finalScreen .final-slogan {
+  position: relative;
+  top: 0;
+  margin: clamp(12px, 2vh, 20px) 0 0;
+  font-size: clamp(10px, 1.05vw, 13px);
+  letter-spacing: 0.2em;
+  line-height: 1.5;
+}
+
+/* Ayat penutup */
+#finalScreen .photo-hint {
+  width: min(90%, 900px);
+  margin: clamp(12px, 2vh, 18px) auto 0 !important;
+  font-size: clamp(8px, 0.85vw, 11px);
+  letter-spacing: 0.14em;
+  line-height: 1.5;
+  text-align: center;
+}
+
+/* Pelarasan untuk viewport rendah */
+@media (max-height: 760px) {
+  #finalScreen .final-content {
+    padding-top: 4px !important;
+  }
+
+  #finalScreen .final-school-emblem {
+    width: 68px;
+    height: 68px;
+    margin-bottom: 8px;
+  }
+
+  #finalScreen .final-content > .eyebrow {
+    margin-bottom: 5px;
+  }
+
+  #finalScreen .final-school {
+    margin-bottom: 5px;
+  }
+
+  #finalScreen .congratulations {
+    margin-top: 12px;
+    margin-bottom: 7px;
+  }
+
+  #finalScreen .final-slogan {
+    margin-top: 10px;
+  }
+
+  #finalScreen .photo-hint {
+    margin-top: 10px !important;
+  }
+}
+
+/* Skrin sangat rendah */
+@media (max-height: 650px) {
+  #finalScreen .final-school-emblem {
+    width: 56px;
+    height: 56px;
+    padding: 5px;
+    margin-bottom: 6px;
+  }
+
+  #finalScreen .final-title {
+    font-size: clamp(30px, 5vw, 58px);
+  }
+
+  #finalScreen .final-year {
+    font-size: 28px;
+  }
+
+  #finalScreen .congratulations {
+    margin-top: 9px;
+    font-size: 13px;
+  }
+
+  #finalScreen .final-quote {
+    font-size: 11px;
+  }
+
+  #finalScreen .final-slogan {
+    margin-top: 8px;
+    font-size: 9px;
+  }
+
+  #finalScreen .photo-hint {
+    margin-top: 8px !important;
+    font-size: 8px;
+  }
+}
+
+/* ==========================================
+   INTRO SCREEN — BATCH SUPERANUS 2026
+   ========================================== */
+
+#introScreen .batch-name {
+  margin: 5px 0 0;
+  color: var(--gold-bright);
+  font-size: clamp(12px, min(1.45vw, 2.2vh), 18px);
+  font-weight: 600;
+  letter-spacing: 0.24em;
+  line-height: 1.5;
+  text-align: center;
+}
+
+
+/* ==========================================
+   INTRO MUSIC — MINIMAL ICON BUTTON
+========================================== */
+
+#introScreen .intro-music-toggle {
+  position: absolute;
+  top: clamp(16px, 3vh, 28px);
+  right: clamp(16px, 3vw, 30px);
+  z-index: 50;
+
+  width: 46px;
+  height: 46px;
+  padding: 11px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border: 1px solid rgba(220, 190, 115, 0.65);
+  border-radius: 50%;
+
+  color: #E8C878;
+  background: rgba(8, 20, 42, 0.58);
+
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+
+  transition:
+    background 0.3s ease,
+    border-color 0.3s ease,
+    box-shadow 0.3s ease,
+    transform 0.3s ease;
+}
+
+#introScreen .intro-music-toggle:hover {
+  background: rgba(220, 190, 115, 0.15);
+  border-color: #F5D98D;
+  box-shadow: 0 0 16px rgba(232, 200, 120, 0.25);
+}
+
+#introScreen .intro-music-toggle:active {
+  transform: scale(0.92);
+}
+
+#introScreen .intro-music-toggle .music-icon {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+#introScreen .intro-music-toggle .music-icon-on {
+  display: none;
+}
+
+#introScreen .intro-music-toggle.is-playing {
+  color: #17233B;
+  background: #E8C878;
+  border-color: #F5D98D;
+  box-shadow: 0 0 18px rgba(232, 200, 120, 0.4);
+}
+
+#introScreen .intro-music-toggle.is-playing .music-icon-off {
+  display: none;
+}
+
+#introScreen .intro-music-toggle.is-playing .music-icon-on {
+  display: block;
+}
+
+@media (max-width: 600px) {
+  #introScreen .intro-music-toggle {
+    width: 42px;
+    height: 42px;
+    padding: 10px;
+  }
+}
+
+/* ==========================================
+   JOURNEY → SIGNATURE
+   ROYAL GOLDEN CINEMATIC TRANSITION
+========================================== */
+
+.scene-transition-overlay[data-effect="journey-signature"].is-active::before {
+  background:
+    linear-gradient(
+      105deg,
+      transparent 20%,
+      rgba(121, 207, 224, 0.18) 40%,
+      rgba(255, 239, 190, 0.95) 50%,
+      rgba(220, 176, 99, 0.65) 54%,
+      transparent 75%
+    );
+
+  animation: journeySignatureSweep 1300ms
+    cubic-bezier(.22, .75, .25, 1) forwards;
+}
+
+.scene-transition-overlay[data-effect="journey-signature"].is-active::after {
+  background:
+    radial-gradient(
+      ellipse at center,
+      rgba(255, 231, 174, 0.65),
+      rgba(52, 164, 220, 0.18) 38%,
+      transparent 72%
+    );
+
+  animation: journeySignatureGlow 1300ms ease-out forwards;
+}
+
+@keyframes journeySignatureSweep {
+  0% {
+    transform: translateX(-110%) scaleX(0.7);
+    opacity: 0;
+  }
+
+  35% {
+    opacity: 1;
+  }
+
+  65% {
+    opacity: 1;
+  }
+
+  100% {
+    transform: translateX(110%) scaleX(1.2);
+    opacity: 0;
+  }
+}
+
+@keyframes journeySignatureGlow {
+  0% {
+    opacity: 0;
+    transform: scale(0.65);
+  }
+
+  45% {
+    opacity: 1;
+    transform: scale(1.1);
+  }
+
+  100% {
+    opacity: 0;
+    transform: scale(1.5);
+  }
+}
+
+
+/* ==========================================
+   THE GRAND DECLARATION
+   OFFICIAL GRADUATION BANNER DESIGN
+========================================== */
+
+#finalScreen .final-banner-layout {
+  width: min(92vw, 1100px);
+  margin: 0 auto;
+  text-align: center;
+}
+
+#finalScreen .final-eyebrow {
+  color: #d8e3ed;
+  font-size: clamp(9px, 1vw, 13px);
+  letter-spacing: 0.32em;
+  margin: 0 0 8px;
+}
+
+#finalScreen .final-school {
+  color: #dce5ef;
+  font-size: clamp(11px, 1.3vw, 17px);
+  letter-spacing: 0.28em;
+}
+
+#finalScreen .final-title {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(36px, 6.5vw, 82px);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  line-height: 1.12;
+  margin: 12px 0 8px;
+  color: #fff5dc;
+  text-shadow: 0 0 24px rgba(232, 200, 120, 0.18);
+}
+
+#finalScreen .final-title span {
+  display: inline-block;
+  color: #e8c878;
+  font-weight: 700;
+}
+
+#finalScreen .final-gold-divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  width: min(340px, 65%);
+  margin: 18px auto;
+  color: #f4d99a;
+}
+
+#finalScreen .final-gold-divider span {
+  height: 1px;
+  flex: 1;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    #e8c878
+  );
+}
+
+#finalScreen .final-gold-divider span:last-child {
+  transform: rotate(180deg);
+}
+
+#finalScreen .final-gold-divider i {
+  font-size: 13px;
+  font-style: normal;
+}
+
+#finalScreen .final-batch {
+  color: #f2dca9;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(15px, 2vw, 25px);
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  margin: 10px 0 4px;
+}
+
+#finalScreen .final-batch span {
+  color: #e8c878;
+  padding: 0 7px;
+}
+
+#finalScreen .final-year {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(30px, 4vw, 48px);
+  letter-spacing: 0.2em;
+  color: #e8c878;
+  margin: 0;
+}
+
+#finalScreen .final-official-block {
+  margin: 22px auto 18px;
+}
+
+#finalScreen .final-official-label {
+  color: #e8c878;
+  font-size: clamp(9px, 1vw, 12px);
+  letter-spacing: 0.3em;
+  margin-bottom: 9px;
+}
+
+#finalScreen .final-official-block h3 {
+  color: #fff4dc;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(16px, 2.2vw, 27px);
+  font-weight: 600;
+  letter-spacing: 0.07em;
+  line-height: 1.3;
+  margin: 0 0 6px;
+}
+
+#finalScreen .final-official-block > p:last-child {
+  color: #b9c8d8;
+  font-size: clamp(10px, 1.1vw, 14px);
+  letter-spacing: 0.16em;
+  margin: 0;
+}
+
+#finalScreen .final-event-divider {
+  width: min(500px, 75%);
+  height: 1px;
+  margin: 20px auto;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(232, 200, 120, 0.75),
+    transparent
+  );
+}
+
+#finalScreen .final-event-info {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: clamp(20px, 5vw, 65px);
+  flex-wrap: wrap;
+}
+
+#finalScreen .final-event-info > div {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  min-width: 120px;
+}
+
+#finalScreen .final-event-info span {
+  color: #e8c878;
+  font-size: 9px;
+  letter-spacing: 0.24em;
+}
+
+#finalScreen .final-event-info strong {
+  color: #fff5df;
+  font-size: clamp(11px, 1.2vw, 15px);
+  letter-spacing: 0.07em;
+}
+
+#finalScreen .final-event-info small {
+  color: #b9c8d8;
+  font-size: 10px;
+  letter-spacing: 0.15em;
+}
+
+#finalScreen .final-slogan {
+  margin-top: 23px;
+  font-size: clamp(9px, 1.05vw, 13px);
+  letter-spacing: 0.25em;
+}
+
+/* RESPONSIVE UNTUK PAPARAN KECIL */
+@media (max-width: 700px) {
+  #finalScreen .final-banner-layout {
+    width: 94vw;
+  }
+
+  #finalScreen .final-event-info {
+    gap: 13px 22px;
+  }
+
+  #finalScreen .final-event-info > div {
+    min-width: 105px;
+  }
+
+  #finalScreen .final-official-block {
+    margin: 15px auto;
+  }
+
+  #finalScreen .final-gold-divider {
+    margin: 12px auto;
+  }
+}
+
+/* ==========================================
+   FINAL SCREEN — PEMBETULAN LOGO SEKOLAH
+========================================== */
+
+#finalScreen .final-school-emblem {
+  width: clamp(88px, 10vh, 116px) !important;
+  height: clamp(88px, 10vh, 116px) !important;
+  padding: 8px !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+/* ==========================================
+   FINAL SCREEN — PEMBETULAN PENJAJARAN TEKS
+========================================== */
+
+#finalScreen .final-slogan,
+#finalScreen .photo-hint {
+  display: block !important;
+  width: 100% !important;
+  max-width: 100% !important;
+
+  margin-left: auto !important;
+  margin-right: auto !important;
+
+  text-align: center !important;
+  left: auto !important;
+  right: auto !important;
+  transform: none;
+}
+
+
+/* ==========================================
+   INTRO SCREEN — CINEMATIC BACKGROUND
+   SENTUHAN ASPIRASI DIGITAL 2.0
+========================================== */
+
+#introScreen {
+  isolation: isolate;
+  overflow: hidden;
+}
+
+/* LAPISAN GAMBAR UTAMA */
+
+#introScreen .intro-background {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+
+  background-image: url("assets/intro-background.jpg");
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+
+  transform: scale(1.04);
+  transform-origin: center center;
+
+  animation: introBackgroundDrift 28s ease-in-out infinite alternate;
+  will-change: transform;
+}
+
+/* OVERLAY GELAP UNTUK KEJELASAN KANDUNGAN */
+
+#introScreen .intro-background::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+
+  background:
+    linear-gradient(
+      180deg,
+      rgba(3, 9, 19, 0.55) 0%,
+      rgba(3, 9, 19, 0.32) 35%,
+      rgba(3, 9, 19, 0.58) 70%,
+      rgba(3, 9, 19, 0.82) 100%
+    ),
+    radial-gradient(
+      ellipse at center,
+      transparent 15%,
+      rgba(2, 7, 16, 0.48) 100%
+    );
+}
+
+/* CAHAYA EMAS BERGERAK */
+
+#introScreen .intro-background::after {
+  content: "";
+  position: absolute;
+  inset: -20%;
+
+  background: linear-gradient(
+    110deg,
+    transparent 35%,
+    rgba(232, 200, 120, 0.035) 44%,
+    rgba(255, 240, 181, 0.14) 50%,
+    rgba(232, 200, 120, 0.035) 56%,
+    transparent 65%
+  );
+
+  transform: translateX(-65%);
+  animation: introGoldenSweep 12s ease-in-out infinite;
+}
+
+/* PASTIKAN KANDUNGAN INTRO DI HADAPAN BACKGROUND */
+
+#introScreen > :not(.intro-background) {
+  z-index: 1;
+}
+
+/* ANIMASI ZOOM PERLAHAN */
+
+@keyframes introBackgroundDrift {
+  0% {
+    transform: scale(1.04);
+  }
+
+  100% {
+    transform: scale(1.12);
+  }
+}
+
+/* ANIMASI CAHAYA EMAS */
+
+@keyframes introGoldenSweep {
+  0%, 15% {
+    transform: translateX(-65%);
+    opacity: 0;
+  }
+
+  30% {
+    opacity: 1;
+  }
+
+  65% {
+    opacity: 0.7;
+  }
+
+  85%, 100% {
+    transform: translateX(65%);
+    opacity: 0;
+  }
+}
+
+/* SOKONGAN PERANTI YANG MENGURANGKAN ANIMASI */
+
+@media (prefers-reduced-motion: reduce) {
+  #introScreen .intro-background,
+  #introScreen .intro-background::after {
+    animation: none;
+  }
+}
+
+
+/* ==========================================
+   INTRO — ROYAL CINEMATIC LIGHT REFINEMENT
+   Peringkat A
+========================================== */
+
+/* Kawalan pencahayaan keseluruhan */
+#introScreen .intro-background::before {
+  background:
+    /* Kawasan gelap utama di tengah */
+    radial-gradient(
+      ellipse at 50% 60%,
+      rgba(3, 8, 19, 0.84) 0%,
+      rgba(3, 8, 19, 0.72) 27%,
+      rgba(3, 8, 19, 0.42) 52%,
+      rgba(3, 8, 19, 0.12) 78%
+    ),
+
+    /* Gelapkan bahagian atas dan bawah */
+    linear-gradient(
+      180deg,
+      rgba(3, 8, 19, 0.32) 0%,
+      transparent 28%,
+      transparent 68%,
+      rgba(3, 8, 19, 0.58) 100%
+    ),
+
+    /* Vignette di bahagian tepi */
+    linear-gradient(
+      90deg,
+      rgba(3, 8, 19, 0.28) 0%,
+      transparent 25%,
+      transparent 75%,
+      rgba(3, 8, 19, 0.28) 100%
+    );
+}
+
+/* INTRO — HIDE DUPLICATE EVENT NAME */
+#introScreen .event-name {
+  display: none;
+}
+
+
+/* ==========================================
+   INTRO SCREEN — ROYAL GRADUATION TYPOGRAPHY
+   Font refinement only
+   ========================================== */
+
+/* Label pengenalan */
+#introScreen .eyebrow {
+  font-family: "Segoe UI", Arial, sans-serif;
+  font-weight: 600;
+  letter-spacing: 0.28em;
+}
+
+/* Tajuk utama */
+#introScreen .main-title {
+  font-family: Georgia, "Times New Roman", serif;
+  font-weight: 500;
+  letter-spacing: 0.045em;
+  line-height: 1.12;
+}
+
+/* TINGKATAN 5 */
+#introScreen .main-title span {
+  font-family: Georgia, "Times New Roman", serif;
+  font-weight: 700;
+  letter-spacing: 0.055em;
+}
+
+/* BATCH SUPERANUS 2026 */
+#introScreen .batch-name {
+  font-family: "Segoe UI", Arial, sans-serif;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+}
+
+/* Nama sekolah */
+#introScreen .school-name {
+  font-family: "Segoe UI", Arial, sans-serif;
+  font-weight: 600;
+  letter-spacing: 0.20em;
+}
+
+/* Slogan utama */
+#introScreen .hero-message h2 {
+  font-family: Georgia, "Times New Roman", serif;
+  font-weight: 500;
+  font-style: italic;
+  letter-spacing: 0.015em;
+}
+
+/* Butang perasmian */
+#introScreen .touch-button {
+  font-family: "Segoe UI", Arial, sans-serif;
+  font-weight: 800;
+  letter-spacing: 0.13em;
+}
+
+/* Arahan bawah */
+#introScreen .instruction {
+  font-family: "Segoe UI", Arial, sans-serif;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+}
+
+
+/* ==========================================
+   INTRO — REMOVE SMALL SCHOOL LOGO
+   ========================================== */
+
+#introScreen .school-logo {
+  display: none !important;
+}
+
+
+/* ==========================================
+   INTRO — RECENTER TYPOGRAPHY
+   ========================================== */
+
+#introScreen .eyebrow,
+#introScreen .main-title,
+#introScreen .batch-name,
+#introScreen .school-name,
+#introScreen .hero-message {
+  text-align: center;
+  align-self: center;
+}
+
+#introScreen .eyebrow {
+  width: 100%;
+}
+
+
+/* ==========================================
+   THE JOURNEY — CINEMATIC PRESENTATION
+   LARGE SCREEN TYPOGRAPHY REFINEMENT
+   ========================================== */
+
+/* TAJUK UTAMA */
+#journeyScreen .journey-title {
+  font-size: clamp(52px, 7vw, 88px);
+  letter-spacing: 0.16em;
+}
+
+/* AYAT PEMBUKA */
+#journeyScreen .journey-description {
+  max-width: 900px;
+  font-size: clamp(19px, 1.65vw, 24px);
+  line-height: 1.6;
+  font-weight: 500;
+  letter-spacing: 0.045em;
+  margin-top: 8px;
+}
+
+/* LABEL NARATIF */
+#journeyScreen .journey-scene-label {
+  font-size: clamp(13px, 1.2vw, 16px);
+  letter-spacing: 0.30em;
+  font-weight: 600;
+}
+
+/* TAJUK NARATIF DINAMIK */
+#journeyScreen .journey-scene-title {
+  font-size: clamp(48px, min(5.5vw, 7vh), 72px);
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  line-height: 1.15;
+}
+
+/* PENERANGAN NARATIF */
+#journeyScreen .journey-scene-description {
+  max-width: 850px;
+  font-size: clamp(19px, 1.65vw, 24px);
+  line-height: 1.6;
+  font-weight: 500;
+  letter-spacing: 0.035em;
+}
+
+/* FOOTER */
+#journeyScreen .journey-footer {
+  margin-top: clamp(12px, 2vh, 24px);
+  font-size: clamp(13px, 1.1vw, 16px);
+  font-weight: 600;
+  letter-spacing: 0.25em;
+}
+
+
+/* ==========================================
+   PALM SCREEN — OFFICIAL PROFILE REFINEMENT
+   STEP 2: PHOTO & INFORMATION LAYOUT
+   ========================================== */
+
+/* Susunan gambar dan maklumat perasmi */
+#palmScreen .palm-official {
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 1.25fr);
+  gap: clamp(14px, 1.5vw, 22px);
+  align-items: center;
+}
+
+/* Besarkan gambar perasmi */
+#palmScreen .palm-official-photo {
+  width: 100%;
+  min-height: clamp(170px, 20vh, 220px);
+  aspect-ratio: 0.82;
+  border-width: 2px;
+}
+
+/* Pastikan gambar memenuhi ruang */
+#palmScreen .palm-official-photo .palm-official-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+}
+
+/* Maklumat nama perasmi */
+#palmScreen .palm-official-info {
+  min-width: 0;
+}
+
+/* Label dirasmikan oleh */
+#palmScreen .palm-official-info p {
+  font-size: clamp(10px, 0.95vw, 13px);
+  font-weight: 700;
+  letter-spacing: 0.12em;
+}
+
+/* Nama perasmi */
+#palmScreen .palm-official-info h3 {
+  font-size: clamp(18px, 1.75vw, 29px);
+  line-height: 1.12;
+  font-weight: 600;
+}
+
+/* Jawatan dan nama sekolah */
+#palmScreen .palm-official-info span {
+  font-size: clamp(11px, 0.95vw, 14px);
+  line-height: 1.5;
+  font-weight: 500;
+}
+
+
+/* ==========================================
+   PALM SCREEN — EVENT DETAILS ENHANCEMENT
+   ========================================== */
+
+/* Susunan maklumat acara */
+#palmScreen .palm-event-details {
+  grid-template-columns: 44px minmax(0, 1fr);
+  gap: 12px 14px;
+  margin-top: clamp(16px, 2vh, 24px);
+}
+
+/* Ikon maklumat */
+#palmScreen .palm-detail-icon {
+  width: 40px;
+  height: 40px;
+  font-size: 21px;
+}
+
+/* Label TARIKH, MASA, TEMPAT */
+#palmScreen .palm-event-details b {
+  font-size: clamp(12px, 1vw, 15px);
+  font-weight: 700;
+  letter-spacing: 0.13em;
+  margin-bottom: 4px;
+}
+
+/* Maklumat tarikh, masa dan lokasi */
+#palmScreen .palm-event-details span {
+  font-size: clamp(11px, 0.95vw, 14px);
+  line-height: 1.5;
+  font-weight: 500;
+}
+
+
+/* RESPONSIVE — PALM OFFICIAL PROFILE */
+
+@media (max-width: 900px) {
+
+  #palmScreen .palm-official {
+    grid-template-columns: minmax(110px, 0.9fr) minmax(0, 1.4fr);
+    gap: 14px;
+  }
+
+  #palmScreen .palm-official-photo {
+    min-height: 145px;
+  }
+
+  #palmScreen .palm-official-info h3 {
+    font-size: clamp(17px, 2.5vw, 24px);
+  }
+
+}
+
+
+/* ==========================================
+   FINALE — GRAND CLOSING SLOGAN REFINEMENT
+   ========================================== */
+
+/* SLOGAN UTAMA */
+#finalScreen .final-slogan {
+  position: relative;
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  margin: clamp(24px, 3vh, 38px) auto 0 !important;
+
+  font-size: clamp(16px, 1.5vw, 21px);
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  line-height: 1.6;
+
+  text-align: center;
+}
+
+/* AYAT PENUTUP */
+#finalScreen .photo-hint {
+  position: relative !important;
+  display: block;
+  width: 100%;
+  max-width: 100%;
+
+  margin: clamp(10px, 1.5vh, 18px) auto 0 !important;
+
+  font-size: clamp(13px, 1.15vw, 16px);
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  line-height: 1.7;
+
+  text-align: center !important;
+}
+
+/* PASTIKAN KEDUA-DUA TEKS SEJAJAR */
+#finalScreen .final-slogan,
+#finalScreen .photo-hint {
+  left: auto !important;
+  right: auto !important;
+  transform: none !important;
+  box-sizing: border-box;
+}
+
+
+
+/* ==========================================
+   INTRO SCREEN — VERTICAL POSITION REFINEMENT
+   Background: Royal Graduation 2026
+   ========================================== */
+
+/* Turunkan keseluruhan kandungan pembukaan */
+#introScreen {
+  box-sizing: border-box;
+
+  padding-top: clamp(64px, 12vh, 130px) !important;
+  padding-bottom: clamp(12px, 2vh, 22px) !important;
+
+  justify-content: center;
+}
+
+/* Pastikan label atas kekal pada kedudukan asal */
+#introScreen .top-label {
+  top: 4.2%;
+}
+
+/* Penyesuaian untuk skrin yang lebih rendah */
+@media (max-height: 760px) {
+
+  #introScreen {
+    padding-top: clamp(42px, 9vh, 70px) !important;
+    padding-bottom: 12px !important;
+  }
+
+}
+
+
+/* ==========================================
+   INTRO SCREEN — FINAL RESPONSIVE REFINEMENT
+   Background + Typography + Position
+   ========================================== */
+
+/* 1. KAWALAN SKRIN PEMBUKAAN */
+
+#introScreen {
+  isolation: isolate;
+  overflow: hidden;
+  box-sizing: border-box;
+  justify-content: center;
+  padding: clamp(18px, 3vh, 32px) 5vw;
+}
+
+/* 2. PASTIKAN BACKGROUND KEKAL PENUH SKRIN */
+
+#introScreen .intro-background {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+/* 3. KEDUDUKAN KESELURUHAN KANDUNGAN */
+
+#introScreen .intro-content {
+  position:relative;
+  z-index:1;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  width:100%;
+  transform:translateY(clamp(90px,12vh,130px));
+}
+
+/* 4. SAIZ TAJUK UTAMA */
+
+#introScreen .main-title {
+  font-size: clamp(27px, min(4.7vw, 7.2vh), 60px);
+  line-height: 1.12;
+}
+
+/* 5. LABEL PENGENALAN */
+
+#introScreen .eyebrow {
+  font-size: clamp(9px, min(0.95vw, 1.25vh), 12px);
+}
+
+/* 6. BATCH SUPERANUS */
+
+#introScreen .batch-name {
+  font-size: clamp(12px, min(1.35vw, 2.05vh), 17px);
+}
+
+/* 7. NAMA SEKOLAH */
+
+#introScreen .school-name {
+  font-size: clamp(10px, min(1.1vw, 1.7vh), 14px);
+}
+
+/* 8. SLOGAN UTAMA */
+
+#introScreen .hero-message h2 {
+  font-size: clamp(18px, min(2.25vw, 3.6vh), 29px);
+}
+
+/* 9. BUTANG PERASMIAN */
+
+#introScreen .touch-button {
+  min-height: 52px;
+  padding: 13px 24px;
+  font-size: clamp(10px, min(1.05vw, 1.5vh), 13px);
+}
+
+/* 10. ARAHAN BAWAH */
+
+#introScreen .instruction {
+  font-size: 9px;
+}
+
+/* 11. LAPTOP DAN SKRIN RENDAH */
+
+@media (max-height: 760px) {
+
+  #introScreen .intro-content {
+    transform: translateY(clamp(24px, 5vh, 42px));
+  }
+
+  #introScreen .hero-message {
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+
+  #introScreen .gold-line {
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+
+}
+
+/* 12. TELEFON DAN PERANTI KECIL */
+
+@media (max-width: 600px) {
+
+  #introScreen .intro-content {
+    transform: translateY(clamp(16px, 3.5vh, 28px));
+  }
+
+  #introScreen .main-title {
+    font-size: clamp(25px, 7vw, 42px);
+  }
+
+  #introScreen .hero-message h2 {
+    font-size: clamp(17px, 4.5vw, 24px);
+  }
+
+}
